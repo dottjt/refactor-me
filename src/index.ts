@@ -10,17 +10,14 @@ import Router from '@koa/router';
 
 import bodyParser from 'koa-body';
 import logger from 'koa-logger';
-import session from 'koa-session';
 
 // Logging Data
 import ourLogger from './util/logger';
-import { data } from '@dottjt/datareade';
 
 // Routes
-import example from './routes/example';
 import {
-  twitterConnect,
-  twitterCallback
+  getAllProducts,
+
 } from './routes/authorize_twitter';
 
 // Other
@@ -54,8 +51,6 @@ const main = async () => {
 
   theNeverFapDeluxeDailyPodcastFeed();
   theWritersDailyPodcastFeed();
-
-  app.keys = [process.env.SIGNING_COOKIE_KEYS as string];
 
   app
     .use(bodyParser())
