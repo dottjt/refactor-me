@@ -11,11 +11,11 @@ import {
 
 /**
  * Retrieve all Products, or finds all Products matching a specified name
- * @function getAllProducts
+ * @function getAllProductsRoute
  * @param {Context} ctx - Koa context object
- * @param {string} ctx.query.name - optional name query string
+ * @param {string} ctx.query.name - optional - name query string
  */
-export const getAllProducts = async (ctx: Context) => {
+export const getAllProductsRoute = async (ctx: Context) => {
   try {
     const name = ctx.query.name;
 
@@ -36,11 +36,11 @@ export const getAllProducts = async (ctx: Context) => {
 
 /**
  * Gets the Product that matches the specified Product ID
- * @function getSingleProduct
+ * @function getSingleProductRoute
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  */
-const getSingleProduct = async (ctx: Context) => {
+const getSingleProductRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
 
@@ -57,11 +57,11 @@ const getSingleProduct = async (ctx: Context) => {
 
 /**
  * Finds all options for a specified product ID
- * @function getAllProductOptions
+ * @function getAllProductOptionsRoute
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  */
-const getAllProductOptions = async (ctx: Context) => {
+const getAllProductOptionsRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
 
@@ -78,12 +78,12 @@ const getAllProductOptions = async (ctx: Context) => {
 
 /**
  * Finds the specified Product Option for the specified Product ID
- * @function getSingleProductOption
+ * @function getSingleProductOptionRoute
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  * @param {string} ctx.params.optionId - required - Product Option ID url parameter
  */
-const getSingleProductOption = async (ctx: Context) => {
+const getSingleProductOptionRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
@@ -107,10 +107,10 @@ const getSingleProductOption = async (ctx: Context) => {
 export const getProductRoutes = () => {
   const router = new Router();
 
-  router.get('/products', getAllProductsValidation, getAllProducts);
-  router.get('/products/:id', getSingleProductValidation, getSingleProduct);
-  router.get('/products/:id/options', getAllProductOptionsValidation, getAllProductOptions);
-  router.get('/products/:id/options/:optionId', getSingleProductOptionValidation, getSingleProductOption);
+  router.get('/products', getAllProductsValidation, getAllProductsRoute);
+  router.get('/products/:id', getSingleProductValidation, getSingleProductRoute);
+  router.get('/products/:id/options', getAllProductOptionsValidation, getAllProductOptionsRoute);
+  router.get('/products/:id/options/:optionId', getSingleProductOptionValidation, getSingleProductOptionRoute);
 
   return router;
 }

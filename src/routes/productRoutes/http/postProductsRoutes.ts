@@ -8,14 +8,14 @@ import { postNewSingleProductValidation, postNewSingleProductOptionValidation } 
 
 /**
  * Creates a new Product
- * @function postNewSingleProduct
+ * @function postNewSingleProductRoute
  * @param {Context} ctx - Koa context object
- * @param {string} ctx.body.name - required name body parameter
- * @param {string} ctx.body.description - required description body parameter
- * @param {float} ctx.body.price - required price body parameter
- * @param {float} ctx.body.deliveryPrice - required deliveryPrice body parameter
+ * @param {string} ctx.body.name - required - name body parameter
+ * @param {string} ctx.body.description - required - description body parameter
+ * @param {float} ctx.body.price - required - price body parameter
+ * @param {float} ctx.body.deliveryPrice - required - deliveryPrice body parameter
  */
-const postNewSingleProduct = async (ctx: Context) => {
+const postNewSingleProductRoute = async (ctx: Context) => {
   try {
     const {
       name,
@@ -43,13 +43,16 @@ const postNewSingleProduct = async (ctx: Context) => {
 
 /**
  * Adds a new Product Option to the specified product
- * @function postNewSingleProductOption
+ * @function postNewSingleProductOptionRoute
  * @param {Context} ctx - Koa context object
- * @param {string} ctx.body.name - required name body parameter
- * @param {string} ctx.body.description - required description body parameter
- * @param {boolean} ctx.body.isNew - required isNew body parameter
+ * 
+ * @param {string} ctx.params.id - required - Product ID url parameter
+ *
+ * @param {string} ctx.body.name - required - name body parameter
+ * @param {string} ctx.body.description - required - description body parameter
+ * @param {boolean} ctx.body.isNew - required - isNew body parameter
  */
-const postNewSingleProductOption = async (ctx: Context) => {
+const postNewSingleProductOptionRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const {
@@ -83,8 +86,8 @@ const postNewSingleProductOption = async (ctx: Context) => {
 export const postProductRoutes = (): Router => {
   const router = new Router();
 
-  router.post('/products', postNewSingleProductValidation, postNewSingleProduct);
-  router.post('/products/:id/options', postNewSingleProductOptionValidation, postNewSingleProductOption);
+  router.post('/products', postNewSingleProductValidation, postNewSingleProductRoute);
+  router.post('/products/:id/options', postNewSingleProductOptionValidation, postNewSingleProductOptionRoute);
 
   return router;
 }

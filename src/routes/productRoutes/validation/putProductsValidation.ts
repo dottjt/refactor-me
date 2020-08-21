@@ -1,5 +1,13 @@
 import { Context, Next } from 'koa';
-import { fullProductSchema, fullProductOptionsSchema } from '../util/productValidationUtil';
+import Joi from 'joi';
+
+const updateProductSchema = Joi.object({
+  productId: Joi.string().guid({ version: 'uuidv4' }).required(),
+  name: Joi.string(),
+  description: Joi.string(),
+  price: Joi.number(),
+  deliveryPrice: Joi.number(),
+});
 
 export const putNewSingleProductValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
@@ -10,7 +18,7 @@ export const putNewSingleProductValidation = async (ctx: Context, next: Next) =>
     deliveryPrice,
   } = ctx.body;
 
-  const { error } = await fullProductSchema.validateAsync({
+  const { error } = await updateProductSchema.validateAsync({
     productId,
     name,
     description,
@@ -21,6 +29,14 @@ export const putNewSingleProductValidation = async (ctx: Context, next: Next) =>
   return next();
 };
 
+const updateProductOptionsSchema = Joi.object({
+  id: Joi.string().guid({ version: 'uuidv4' }).required(),
+  productId: Joi.string().guid({ version: 'uuidv4' }).required(),
+  name: Joi.string(),
+  description: Joi.string(),
+  isNew: Joi.boolean(),
+});
+
 export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
   const productOptionId = ctx.params.optionId;
@@ -30,7 +46,7 @@ export const putNewSingleProductOptionValidation = async (ctx: Context, next: Ne
     isNew,
   } = ctx.body;
 
-  const { error } = await fullProductOptionsSchema.validateAsync({
+  const { error } = await updateProductOptionsSchema.validateAsync({
     id: productOptionId,
     name,
     description,

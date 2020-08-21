@@ -1,4 +1,3 @@
-import Joi from 'joi';
 import { Context, Next } from 'koa';
 import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
 

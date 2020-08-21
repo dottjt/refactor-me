@@ -1,8 +1,14 @@
 import { Context, Next } from 'koa';
-import { fullProductSchema, fullProductOptionsSchema } from '../util/productValidationUtil';
+import Joi from 'joi';
+
+const createProductSchema = Joi.object({
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+  price: Joi.number().required(),
+  deliveryPrice: Joi.number().required(),
+});
 
 export const postNewSingleProductValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
   const {
     name,
     description,
@@ -10,8 +16,7 @@ export const postNewSingleProductValidation = async (ctx: Context, next: Next) =
     deliveryPrice,
   } = ctx.body;
 
-  const { error } = await fullProductSchema.validateAsync({
-    productId,
+  const { error } = await createProductSchema.validateAsync({
     name,
     description,
     price,
@@ -21,17 +26,22 @@ export const postNewSingleProductValidation = async (ctx: Context, next: Next) =
   return next();
 };
 
+const createProductOptionsSchema = Joi.object({
+  productId: Joi.string().guid({ version: 'uuidv4' }).required(),
+  name: Joi.string().required(),
+  description: Joi.string().required(),
+  isNew: Joi.boolean().required(),
+});
+
 export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
   const {
-    id,
     name,
     description,
     isNew,
   } = ctx.body;
 
-  const { error } = await fullProductOptionsSchema.validateAsync({
-    id,
+  const { error } = await createProductOptionsSchema.validateAsync({
     name,
     description,
     isNew,

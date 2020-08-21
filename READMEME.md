@@ -36,12 +36,13 @@ The application is also pre-populated with seed data for testing purposes. Just 
 - Decided to rewrite everything from the ground-up in node.js, since that's what I primarily work with.
 - Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. It produces cleaner code, in my opinion.
 - My guiding principle whilst building this was to make the code as readable and as searchable as possible. I tried to make everything as explicit as possible.
+- I didn't take the commits seriously, at all.
 
 ## If I Had More Time
 
 - Setup SSL.
-- Setup some sort of error alerting i.e. Sentry.
-- Setup Docker configurations for both testing and production to work with CI/CD.
+- Setup some sort of external error alerting i.e. Sentry.
+- Setup Docker configurations for both testing and production.
 - Setup some sort of contract testing (technically it would just be the verifier).
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of integration testing with the database.
@@ -63,8 +64,7 @@ The application is also pre-populated with seed data for testing purposes. Just 
 
 - I probably wouldn't allow the client to fetch products with the direct product database id. It exposes too much information about the database, I would much prefer only being able to select objects via the name, or some other kind of identifier.
 
-
-## Extra
+## Extras
 
 ### Migrations
 

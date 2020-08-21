@@ -10,9 +10,9 @@ export const productRouter = (): Router => {
 
   router
     .use(getProductRoutes().routes())
-    // .use(deleteProductRoutes().routes())
-    // .use(postProductRoutes().routes())
-    // .use(putProductRoutes().routes())
+    .use(deleteProductRoutes().routes())
+    .use(postProductRoutes().routes())
+    .use(putProductRoutes().routes())
 
   return router;
 }

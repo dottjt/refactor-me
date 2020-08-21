@@ -4,14 +4,13 @@ import { Context } from 'koa';
 import { knex } from '../../../util/knex';
 import { Products, ProductOptions } from '../../../types/productTypes';
 
-// deletes a product and its options.
 /**
- * Deletes a Product and its Product Options
- * @function deleteSingleProduct
+ * Delete a Product and its related Product Options
+ * @function deleteSingleProductRoute
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  */
-const deleteSingleProduct = async (ctx: Context) => {
+const deleteSingleProductRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
 
@@ -31,12 +30,12 @@ const deleteSingleProduct = async (ctx: Context) => {
 
 /**
  * Deletes the specified Product Option
- * @function deleteSingleProductOption
+ * @function deleteSingleProductOptionRoute
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  * @param {string} ctx.params.optionId - required - Product Option ID url parameter
  */
-const deleteSingleProductOption = async (ctx: Context) => {
+const deleteSingleProductOptionRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
@@ -61,8 +60,8 @@ const deleteSingleProductOption = async (ctx: Context) => {
 export const deleteProductRoutes = (): Router => {
   const router = new Router();
 
-  router.delete('/products/:id', deleteSingleProduct);
-  router.delete('/products/:id/options/:optionId', deleteSingleProductOption);
+  router.delete('/products/:id', deleteSingleProductRoute);
+  router.delete('/products/:id/options/:optionId', deleteSingleProductOptionRoute);
 
   return router;
 }

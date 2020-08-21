@@ -7,15 +7,17 @@ import { putNewSingleProductValidation, putNewSingleProductOptionValidation } fr
 
 /**
  * Updates a Product
- * @function putUpdateSingleProduct
+ * @function putUpdateSingleProductRoute
  * @param {Context} ctx - Koa context object
+ *
  * @param {string} ctx.params.id - required - Product Option ID url parameter
  * @param {string} ctx.body.name - optional - name body parameter
+ *
  * @param {string} ctx.body.description - optional - description body parameter
  * @param {float} ctx.body.price - optional - price body parameter
  * @param {float} ctx.body.deliveryPrice - optional - deliveryPrice body parameter
  */
-export const putUpdateSingleProduct = async (ctx: Context) => {
+export const putUpdateSingleProductRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const {
@@ -42,18 +44,19 @@ export const putUpdateSingleProduct = async (ctx: Context) => {
   }
 }
 
-// 10. `PUT /products/{id}/options/{optionId}` - updates the specified product option.
 /**
  * Updates the specified Product Option
- * @function postNewSingleProductOption
+ * @function putUpdateSingleProductOptionRoute
  * @param {Context} ctx - Koa context object
+ *
  * @param {string} ctx.params.id - required - Product Option ID url parameter
  * @param {string} ctx.params.optionId - required - name body parameter
+ *
  * @param {string} ctx.body.name - optional - name body parameter
  * @param {string} ctx.body.description - optional - description body parameter
  * @param {boolean} ctx.body.isNew - optional - isNew body parameter
  */
-export const putUpdateSingleProductOption = async (ctx: Context) => {
+export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
@@ -90,8 +93,8 @@ export const putUpdateSingleProductOption = async (ctx: Context) => {
 export const putProductRoutes = (): Router => {
   const router = new Router();
 
-  router.put('/products/:id', putNewSingleProductValidation, putUpdateSingleProduct);
-  router.put('/products/:id/options/:optionId', putNewSingleProductOptionValidation, putUpdateSingleProductOption);
+  router.put('/products/:id', putNewSingleProductValidation, putUpdateSingleProductRoute);
+  router.put('/products/:id/options/:optionId', putNewSingleProductOptionValidation, putUpdateSingleProductOptionRoute);
 
   return router;
 }
