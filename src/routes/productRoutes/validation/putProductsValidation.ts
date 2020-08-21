@@ -8,7 +8,7 @@ const updateProductSchema = Joi.object({
   description: Joi.string(),
   price: Joi.number(),
   deliveryPrice: Joi.number(),
-});
+}).options({ allowUnknown: false });
 
 export const putNewSingleProductValidation = async (ctx: Context, next: Next) => {
   try {
@@ -32,7 +32,7 @@ const updateProductOptionsSchema = Joi.object({
   name: Joi.string(),
   description: Joi.string(),
   isNew: Joi.boolean(),
-});
+}).options({ allowUnknown: false });
 
 export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   try {

@@ -7,7 +7,7 @@ const createProductSchema = Joi.object({
   description: Joi.string().required(),
   price: Joi.number().required(),
   deliveryPrice: Joi.number().required(),
-});
+}).options({ allowUnknown: false });
 
 export const postNewSingleProductValidation = async (ctx: Context, next: Next) => {
   try {
@@ -26,7 +26,7 @@ const createProductOptionsSchema = Joi.object({
   name: Joi.string().required(),
   description: Joi.string().required(),
   isNew: Joi.boolean().required(),
-});
+}).options({ allowUnknown: false });
 
 export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   try {

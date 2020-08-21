@@ -9,7 +9,7 @@ describe('putProductRoutes', () => {
       expect('cake').toBe('cake');
     });
 
-    it('should throw HTTP Status 422 if a non-specified post body field is not passed', () => {
+    it('should throw HTTP Status 422 if non-specified post body fields are passed', () => {
       expect('cake').toBe('cake');
     });
   });
@@ -19,7 +19,7 @@ describe('putProductRoutes', () => {
       expect('cake').toBe('cake');
     });
 
-    it('should throw HTTP Status 422 if a non-specified post body field is not passed', () => {
+    it('should throw HTTP Status 422 if non-specified post body fields are passed', () => {
       expect('cake').toBe('cake');
     });
 
