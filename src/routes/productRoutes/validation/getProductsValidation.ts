@@ -14,7 +14,7 @@ export const getSingleProductValidation = async (ctx: Context, next: Next) => {
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };
 
@@ -26,7 +26,7 @@ export const getAllProductOptionsValidation = async (ctx: Context, next: Next) =
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };
 
@@ -41,6 +41,6 @@ export const getSingleProductOptionValidation = async (ctx: Context, next: Next)
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };

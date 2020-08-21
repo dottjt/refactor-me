@@ -7,18 +7,20 @@ const createProductSchema = Joi.object({
   description: Joi.string().required(),
   price: Joi.number().required(),
   deliveryPrice: Joi.number().required(),
-}).options({ allowUnknown: false });
+}).options({ abortEarly: false, allowUnknown: false });
 
 export const postNewSingleProductValidation = async (ctx: Context, next: Next) => {
   try {
-    await createProductSchema.validateAsync({
+    const result = await createProductSchema.validateAsync({
       ...ctx.request.body,
     });
 
+    console.log(result);
     return next();
   } catch (error) {
+    console.log(error);
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = { data: { message: error.details.message } }
+    ctx.body = { data: { errors: error.details } };
   }
 };
 
@@ -26,7 +28,7 @@ const createProductOptionsSchema = Joi.object({
   productId: Joi.string().guid({ version: 'uuidv4' }).required(),
   name: Joi.string().required(),
   description: Joi.string().required(),
-}).options({ allowUnknown: false });
+}).options({ abortEarly: false, allowUnknown: false });
 
 export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   try {
@@ -40,6 +42,6 @@ export const postNewSingleProductOptionValidation = async (ctx: Context, next: N
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };

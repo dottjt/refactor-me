@@ -8,7 +8,7 @@ const updateProductSchema = Joi.object({
   description: Joi.string(),
   price: Joi.number(),
   deliveryPrice: Joi.number(),
-}).options({ allowUnknown: false });
+}).options({ abortEarly: false, allowUnknown: false });
 
 export const putNewSingleProductValidation = async (ctx: Context, next: Next) => {
   try {
@@ -22,7 +22,7 @@ export const putNewSingleProductValidation = async (ctx: Context, next: Next) =>
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };
 
@@ -31,7 +31,7 @@ const updateProductOptionsSchema = Joi.object({
   productId: Joi.string().guid({ version: 'uuidv4' }).required(),
   name: Joi.string(),
   description: Joi.string(),
-}).options({ allowUnknown: false });
+}).options({ abortEarly: false, allowUnknown: false });
 
 export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   try {
@@ -47,6 +47,6 @@ export const putNewSingleProductOptionValidation = async (ctx: Context, next: Ne
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };

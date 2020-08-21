@@ -10,7 +10,7 @@ export const deleteSingleProductValidation = async (ctx: Context, next: Next) =>
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };
 
@@ -25,6 +25,6 @@ export const deleteSingleProductOptionValidation = async (ctx: Context, next: Ne
     return next();
   } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
+    ctx.body = { data: { errors: error.details } };
   }
 };
