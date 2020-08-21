@@ -11,30 +11,20 @@ import { putNewSingleProductValidation, putNewSingleProductOptionValidation } fr
  * @param {Context} ctx - Koa context object
  *
  * @param {string} ctx.params.id - required - Product Option ID url parameter
- * @param {string} ctx.body.name - optional - name body parameter
  *
- * @param {string} ctx.body.description - optional - description body parameter
- * @param {float} ctx.body.price - optional - price body parameter
- * @param {float} ctx.body.deliveryPrice - optional - deliveryPrice body parameter
+ * @param {string} ctx.request.body.description - optional - description body parameter
+ * @param {float} ctx.request.body.price - optional - price body parameter
+ * @param {float} ctx.request.body.deliveryPrice - optional - deliveryPrice body parameter
  */
 export const putUpdateSingleProductRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
-    const {
-      name,
-      description,
-      price,
-      deliveryPrice,
-    } = ctx.body;
 
     const product =
       await knex<Products>('products')
         .where({ id: productId })
         .update({
-          name,
-          description,
-          price,
-          deliveryPrice,
+          ...ctx.request.body,
         })
         .returning('*');
 
@@ -52,9 +42,9 @@ export const putUpdateSingleProductRoute = async (ctx: Context) => {
  * @param {string} ctx.params.id - required - Product Option ID url parameter
  * @param {string} ctx.params.optionId - required - name body parameter
  *
- * @param {string} ctx.body.name - optional - name body parameter
- * @param {string} ctx.body.description - optional - description body parameter
- * @param {boolean} ctx.body.isNew - optional - isNew body parameter
+ * @param {string} ctx.request.body.name - optional - name body parameter
+ * @param {string} ctx.request.body.description - optional - description body parameter
+ * @param {boolean} ctx.request.body.isNew - optional - isNew body parameter
  */
 export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
   try {
@@ -64,10 +54,10 @@ export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
       name,
       description,
       isNew,
-    } = ctx.body;
+    } = ctx.request.body;
 
     const productOption =
-      await knex<ProductOptions>('product_options')
+      await knex<ProductOptions>('productOptions')
         .where({
           id: productOptionId,
           productId: productId,

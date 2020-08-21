@@ -10,32 +10,22 @@ import { postNewSingleProductValidation, postNewSingleProductOptionValidation } 
  * Creates a new Product
  * @function postNewSingleProductRoute
  * @param {Context} ctx - Koa context object
- * @param {string} ctx.body.name - required - name body parameter
- * @param {string} ctx.body.description - required - description body parameter
- * @param {float} ctx.body.price - required - price body parameter
- * @param {float} ctx.body.deliveryPrice - required - deliveryPrice body parameter
+ * @param {string} ctx.request.body.name - required - name body parameter
+ * @param {string} ctx.request.body.description - required - description body parameter
+ * @param {float} ctx.request.body.price - required - price body parameter
+ * @param {float} ctx.request.body.deliveryPrice - required - deliveryPrice body parameter
  */
 const postNewSingleProductRoute = async (ctx: Context) => {
   try {
-    const {
-      name,
-      description,
-      price,
-      deliveryPrice,
-    } = ctx.body;
-
-    const product =
+    const item =
       await knex<Products>('products')
         .insert({
           id: uuidv4(),
-          name,
-          description,
-          price,
-          deliveryPrice,
+          ...ctx.request.body,
         })
         .returning('*');
 
-    ctx.body = { data: { product } };
+    ctx.body = { data: { item } };
   } catch (error) {
     throw new Error(error);
   }
@@ -45,35 +35,27 @@ const postNewSingleProductRoute = async (ctx: Context) => {
  * Adds a new Product Option to the specified product
  * @function postNewSingleProductOptionRoute
  * @param {Context} ctx - Koa context object
- * 
+ *
  * @param {string} ctx.params.id - required - Product ID url parameter
  *
- * @param {string} ctx.body.name - required - name body parameter
- * @param {string} ctx.body.description - required - description body parameter
- * @param {boolean} ctx.body.isNew - required - isNew body parameter
+ * @param {string} ctx.request.body.name - required - name body parameter
+ * @param {string} ctx.request.body.description - required - description body parameter
+ * @param {boolean} ctx.request.body.isNew - required - isNew body parameter
  */
 const postNewSingleProductOptionRoute = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
-    const {
-      name,
-      description,
-      isNew,
-    } = ctx.body;
 
-    const productOption =
-      await knex<ProductOptions>('product_options')
+    const item =
+      await knex<ProductOptions>('productOptions')
         .insert({
           id: uuidv4(),
-          name,
-          description,
-          isNew,
           productId,
+          ...ctx.request.body,
         })
         .returning('*');
 
-    ctx.body = { data: { productOption } };
-
+    ctx.body = { data: { item } };
   } catch (error) {
     throw new Error(error);
   }

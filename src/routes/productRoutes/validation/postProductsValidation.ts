@@ -10,25 +10,14 @@ const createProductSchema = Joi.object({
 });
 
 export const postNewSingleProductValidation = async (ctx: Context, next: Next) => {
-  const {
-    name,
-    description,
-    price,
-    deliveryPrice,
-  } = ctx.body;
-
-  const { error } = await createProductSchema.validateAsync({
-    name,
-    description,
-    price,
-    deliveryPrice,
-  });
-
-  if (error) {
-    ctx.status = UNPROCESSABLE_ENTITY;
-    ctx.body = error;
-  } else {
+  try {
+    await createProductSchema.validateAsync({
+      ...ctx.request.body,
+    });
     return next();
+  } catch (error) {
+    ctx.status = UNPROCESSABLE_ENTITY;
+    ctx.body = { data: { message: error.details.message } }
   }
 };
 
@@ -40,24 +29,17 @@ const createProductOptionsSchema = Joi.object({
 });
 
 export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
-  const {
-    name,
-    description,
-    isNew,
-  } = ctx.body;
+  try {
+    const productId = ctx.params.id;
 
-  const { error } = await createProductOptionsSchema.validateAsync({
-    name,
-    description,
-    isNew,
-    productId,
-  });
+    await createProductOptionsSchema.validateAsync({
+      productId,
+      ...ctx.request.body,
+    });
 
-  if (error) {
+    return next();
+  } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = error;
-  } else {
-    return next();
   }
 };

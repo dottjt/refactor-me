@@ -22,7 +22,7 @@ const deleteSingleProductRoute = async (ctx: Context) => {
       .where({ productId: productId })
       .delete();
 
-    ctx.body = { data: { productId: `product ${productId} deleted.` } };
+    ctx.body = { data: { id: productId } };
   } catch(error) {
     throw new Error(error);
   }
@@ -47,7 +47,7 @@ const deleteSingleProductOptionRoute = async (ctx: Context) => {
       })
       .delete();
 
-    ctx.body = { data: { productId: `Product ${productOptionId} deleted.` } };
+    ctx.body = { data: { id: productOptionId } };
   } catch(error) {
     throw new Error(error);
   }

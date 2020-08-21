@@ -49,7 +49,7 @@ The application is also pre-populated with seed data for testing purposes. Just 
 - Setup some sort of integration testing with the database.
 - Fixtures file of all the different available products for testing purposes.
 - Implement test coverage i.e. NYC, as well as make it blocking.
-- Probably refactor the route validation.
+- Probably refactor the route validation, and write tests for it as well.
 - Add more inline JSDoc annotations.
 
 ## Improvements
@@ -73,7 +73,7 @@ The application is also pre-populated with seed data for testing purposes. Just 
 ### Migrations
 
 - `npx knex --knexfile ./database/knexfile.ts migrate:make products -x ts`
-- `npx knex --knexfile ./database/knexfile.ts migrate:make product_options -x ts`
+- `npx knex --knexfile ./database/knexfile.ts migrate:make productOptions -x ts`
 
 ### unused
 

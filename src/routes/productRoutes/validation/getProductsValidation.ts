@@ -7,40 +7,40 @@ export const getAllProductsValidation = async (ctx: Context, next: Next) => {
 };
 
 export const getSingleProductValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
-  const { error } = await productIdSchema.validateAsync({ productId });
+  try {
+    const productId = ctx.params.id;
+    await productIdSchema.validateAsync({ productId });
 
-  if (error) {
+    return next();
+  } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = error;
-  } else {
-    return next();
   }
 };
 
 export const getAllProductOptionsValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
-  const { error } = await productIdSchema.validateAsync({ productId });
+  try {
+    const productId = ctx.params.id;
+    await productIdSchema.validateAsync({ productId });
 
-  if (error) {
+    return next();
+  } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = error;
-  } else {
-    return next();
   }
 };
 
 export const getSingleProductOptionValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
-  const productOptionId = ctx.params.optionId;
-  const { error } = await productOptionIdAndProductIdSchema.validateAsync({
-    productId, productOptionId
-  });
+  try {
+    const productId = ctx.params.id;
+    const productOptionId = ctx.params.optionId;
+    await productOptionIdAndProductIdSchema.validateAsync({
+      productId, productOptionId
+    });
 
-  if (error) {
+    return next();
+  } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = error;
-  } else {
-    return next();
   }
 };

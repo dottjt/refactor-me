@@ -11,27 +11,18 @@ const updateProductSchema = Joi.object({
 });
 
 export const putNewSingleProductValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
-  const {
-    name,
-    description,
-    price,
-    deliveryPrice,
-  } = ctx.body;
+  try {
+    const productId = ctx.params.id;
 
-  const { error } = await updateProductSchema.validateAsync({
-    productId,
-    name,
-    description,
-    price,
-    deliveryPrice,
-  });
+    await updateProductSchema.validateAsync({
+      productId,
+      ...ctx.request.body,
+    });
 
-  if (error) {
+    return next();
+  } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = error;
-  } else {
-    return next();
   }
 };
 
@@ -44,26 +35,19 @@ const updateProductOptionsSchema = Joi.object({
 });
 
 export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
-  const productOptionId = ctx.params.optionId;
-  const {
-    name,
-    description,
-    isNew,
-  } = ctx.body;
+  try {
+    const productId = ctx.params.id;
+    const productOptionId = ctx.params.optionId;
 
-  const { error } = await updateProductOptionsSchema.validateAsync({
-    id: productOptionId,
-    name,
-    description,
-    isNew,
-    productId,
-  });
+    await updateProductOptionsSchema.validateAsync({
+      id: productOptionId,
+      productId,
+      ...ctx.request.body
+    });
 
-  if (error) {
+    return next();
+  } catch(error) {
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = error;
-  } else {
-    return next();
   }
 };

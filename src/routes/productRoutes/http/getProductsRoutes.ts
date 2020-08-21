@@ -15,7 +15,7 @@ import {
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.query.name - optional - name query string
  */
-export const getAllProductsRoute = async (ctx: Context) => {
+const getAllProductsRoute = async (ctx: Context) => {
   try {
     const name = ctx.query.name;
 
@@ -49,7 +49,7 @@ const getSingleProductRoute = async (ctx: Context) => {
         .where({ id: productId })
         .first('*');
 
-    ctx.body = { data: { items: [ product ] } };
+    ctx.body = { data: { item: product } };
   } catch(error) {
     throw new Error(error);
   }
@@ -66,7 +66,7 @@ const getAllProductOptionsRoute = async (ctx: Context) => {
     const productId = ctx.params.id;
 
     const productOptions =
-      await knex<ProductOptions>('product_options')
+      await knex<ProductOptions>('productOptions')
         .where({ productId: productId })
         .select('*');
 
@@ -89,12 +89,12 @@ const getSingleProductOptionRoute = async (ctx: Context) => {
     const productOptionId = ctx.params.optionId;
 
     const productOption =
-      await knex<ProductOptions>('product_options')
+      await knex<ProductOptions>('productOptions')
         .where({ id: productOptionId })
         .where({ productId: productId })
         .first('*');
 
-    ctx.body = { data: { items: [ productOption ] } };
+    ctx.body = { data: { item: productOption } };
   } catch(error) {
     throw new Error(error);
   }
