@@ -1,12 +1,16 @@
-import { Context, Next } from "koa"
+import { Context } from "koa"
+import { v4 as uuidv4 } from 'uuid';
+
 import knex from "../../../util/knex"
 import { Products, ProductOptions } from "../../../types/productTypes"
+import { postNewSingleProductValidation, postNewSingleProductOptionValidation } from "../validation/postProductsValidation";
+
+
 
 // 4. `POST /products` - creates a new product.
 export const postNewSingleProduct = async (ctx: Context) => {
   try {
     const {
-      id,
       name,
       description,
       price,
@@ -15,8 +19,8 @@ export const postNewSingleProduct = async (ctx: Context) => {
 
     const product =
       await knex<Products>('products')
-        .update({
-          id,
+        .insert({
+          id: uuidv4(),
           name,
           description,
           price,
@@ -35,7 +39,6 @@ export const postNewSingleProductOption = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const {
-      id,
       name,
       description,
       isNew,
@@ -44,7 +47,7 @@ export const postNewSingleProductOption = async (ctx: Context) => {
     const productOption =
       await knex<ProductOptions>('product_options')
         .insert({
-          id,
+          id: uuidv4(),
           name,
           description,
           isNew,

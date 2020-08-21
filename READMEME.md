@@ -4,7 +4,7 @@ Welcome! My name is Julius and this is my refactor!
 
 Ultimately my intention with this assignment is to demonstrate that I have a high-level understanding of how to write quality code. It is by no means production ready, as that would take weeks as well as significantly increase the complexity of the project i.e. handling secrets, but I try and paint a complete picture.
 
-I've also gone and changed a number of conventions to make it more of a node.js project i.e. snakeCase, so please keep that in mind! 
+I've also gone and changed a number of conventions to make it more of a node.js project i.e. snakeCase, so please keep that in mind!
 
 ## Specifications
 
@@ -15,9 +15,21 @@ Server Framework: Koa
 
 You can either run this locally or within docker. I recommend Docker since it setups up the Postgres database for you:
 
-- change `.env.example` to `.env`
+- `.env.example` to `.env`
 - `npm install`
 - `npm run start:docker:dev`
+
+Alternatively if you'd like to run it locally:
+
+- `.env.example` to `.env`
+- `npm install`
+- `psql -U postgres`
+- `CREATE DATABASE refactor_me;`
+- `CREATE USER refactor_me_user WITH ENCRYPTED PASSWORD 'refactor_me_password';`
+- `GRANT ALL PRIVILEGES ON DATABASE refactor_me TO refactor_me_user;`
+- `npm run start:dev`
+
+The application is also pre-populated with seed data so you can use it as is. Just head to `./database/seeds/development_seed_data.ts` if you'd like to see the pre-defined values.
 
 ## Decisions
 
@@ -25,6 +37,7 @@ You can either run this locally or within docker. I recommend Docker since it se
 - Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. In my opinion it produces cleaner code.
 - Optimised the codebase around searchability. I believe this is important and it reduces the mental overloading of writing code.
 - General use of `export` instead of `export default` in order to maintain explicit relations.
+- I really like using GraphQL, especially from the perspective of the client, but it was clear that this was a rest API.
 
 ## If I Had More Time
 
@@ -33,7 +46,8 @@ You can either run this locally or within docker. I recommend Docker since it se
 - Setup some sort of contract testing (technically it would just be the verifier).
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of integration testing with the database.
-
+- Fixtures file of all the different products available.
+-
 
 ## Improvements
 
@@ -49,11 +63,10 @@ You can either run this locally or within docker. I recommend Docker since it se
 - `npx knex --knexfile ./database/knexfile.ts migrate:make products -x ts`
 - `npx knex --knexfile ./database/knexfile.ts migrate:make product_options -x ts`
 
+## Setup Local Postgres
 
+- Setup postgres
 
-
-
-- I would have liked to have used GraphQL but it was clear that this was a rest API.
 
 
 // unused

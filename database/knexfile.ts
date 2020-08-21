@@ -18,6 +18,7 @@ module.exports = {
     },
     migrations: {
       directory: path.resolve(__dirname, 'migrations'),
+      tableName: 'knex_migrations_refactor_me'
     }
   },
 };

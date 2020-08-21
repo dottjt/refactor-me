@@ -1,5 +1,5 @@
 import { Context, Next } from 'koa';
-import { productIdSchema, productIdAndOptionIdSchema } from '../util/productValidationUtil';
+import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
 
 export const deleteSingleProduct = async (ctx: Context, next: Next) => {
     const productId = ctx.params.id;
@@ -11,9 +11,9 @@ export const deleteSingleProduct = async (ctx: Context, next: Next) => {
 export const deleteSingleProductOption = async (ctx: Context, next: Next) => {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
-    const { error } = await productIdAndOptionIdSchema.validateAsync({
+    const { error } = await productOptionIdAndProductIdSchema.validateAsync({
         productId, productOptionId
     });
-    
+
     next();
 };

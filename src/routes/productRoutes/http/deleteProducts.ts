@@ -12,7 +12,7 @@ const deleteSingleProduct = async (ctx: Context) => {
       .where('id', productId)
       .delete();
 
-    ctx.body = { data: { message: `product ${productId} deleted.` } };
+    ctx.body = { data: { productId: `product ${productId} deleted.` } };
   } catch(error) {
     throw new Error(error);
   }
@@ -30,7 +30,7 @@ const deleteSingleProductOption = async (ctx: Context) => {
       .where('id', productId)
       .delete();
 
-    ctx.body = { data: { message: `Product ${productOptionId} deleted.` } };
+    ctx.body = { data: { productOptionId: `Product ${productOptionId} deleted.` } };
   } catch(error) {
     throw new Error(error);
   }

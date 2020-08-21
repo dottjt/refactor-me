@@ -23,15 +23,15 @@ export const putNewSingleProductValidation = async (ctx: Context, next: Next) =>
 
 export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
+  const productOptionId = ctx.params.optionId;
   const {
-    id,
     name,
     description,
     isNew,
   } = ctx.body;
 
   const { error } = await fullProductOptionsSchema.validateAsync({
-    id,
+    id: productOptionId,
     name,
     description,
     isNew,

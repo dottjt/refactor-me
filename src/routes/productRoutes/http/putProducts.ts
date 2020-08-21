@@ -1,12 +1,13 @@
 import knex from "../../../util/knex"
-import { Context, Next } from "koa"
+import { Context } from "koa"
 import { Products, ProductOptions } from "../../../types/productTypes"
+import { putNewSingleProductValidation, putNewSingleProductOptionValidation } from "../validation/putProductsValidation";
 
 // 5. `PUT /products/{id}` - updates a product.
 export const putUpdateSingleProduct = async (ctx: Context) => {
   try {
+    const productId = ctx.params.id;
     const {
-      id,
       name,
       description,
       price,
@@ -15,8 +16,8 @@ export const putUpdateSingleProduct = async (ctx: Context) => {
 
     const product =
       await knex<Products>('products')
+        .where({ id: productId })
         .update({
-          id,
           name,
           description,
           price,
@@ -36,7 +37,6 @@ export const putUpdateSingleProductOption = async (ctx: Context) => {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
     const {
-      id,
       name,
       description,
       isNew,
@@ -44,12 +44,14 @@ export const putUpdateSingleProductOption = async (ctx: Context) => {
 
     const productOption =
       await knex<ProductOptions>('product_options')
+        .where({
+          id: productOptionId,
+          productId: productId,
+        })
         .update({
-          id,
           name,
           description,
           isNew,
-          productId,
         })
         .returning('*');
 
@@ -61,8 +63,8 @@ export const putUpdateSingleProductOption = async (ctx: Context) => {
 }
 
 export const putProductRoutes = (router) => {
-  router.put('/products/:id', putUpdateSingleProduct);
-  router.put('/products/:id/options/:optionId', putUpdateSingleProductOption);
+  router.put('/products/:id', putNewSingleProductValidation, putUpdateSingleProduct);
+  router.put('/products/:id/options/:optionId', putNewSingleProductOptionValidation, putUpdateSingleProductOption);
 
   return router;
 }
