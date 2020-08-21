@@ -25,7 +25,7 @@ export const postNewSingleProduct = async (ctx: Context) => {
         .returning('*');
 
     ctx.body = { data: { product } };
-  } catch(error) {
+  } catch (error) {
     throw new Error(error);
   }
 }
@@ -54,14 +54,14 @@ export const postNewSingleProductOption = async (ctx: Context) => {
 
     ctx.body = { data: { productOption } };
 
-  } catch(error) {
+  } catch (error) {
     throw new Error(error);
   }
 }
 
 export const postProductRoutes = (router) => {
-  router.post('/products', postNewSingleProduct);
-  router.post('/products/:id/options', postNewSingleProductOption);
+  router.post('/products', postNewSingleProductValidation, postNewSingleProduct);
+  router.post('/products/:id/options', postNewSingleProductOptionValidation, postNewSingleProductOption);
 
   return router;
 }

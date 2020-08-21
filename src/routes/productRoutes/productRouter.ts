@@ -6,13 +6,13 @@ import { postProductRoutes } from './http/postProducts';
 import { putProductRoutes } from './http/putProducts';
 
 export const productRouter = (): Router => {
-  const router = new Router();
+  const router: Router = new Router();
 
   router
     .use(getProductRoutes)
-    // .use(deleteProductRoutes)
-    // .use(postProductRoutes)
-    // .use(putProductRoutes)
+    .use(deleteProductRoutes)
+    .use(postProductRoutes)
+    .use(putProductRoutes)
 
   return router;
 }
