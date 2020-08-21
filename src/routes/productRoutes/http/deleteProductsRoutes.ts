@@ -10,7 +10,7 @@ import { Products, ProductOptions } from '../../../types/productTypes';
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  */
-const deleteSingleProductRoute = async (ctx: Context) => {
+const deleteSingleProductRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
 
@@ -35,7 +35,7 @@ const deleteSingleProductRoute = async (ctx: Context) => {
  * @param {string} ctx.params.id - required - Product ID url parameter
  * @param {string} ctx.params.optionId - required - Product Option ID url parameter
  */
-const deleteSingleProductOptionRoute = async (ctx: Context) => {
+const deleteSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;

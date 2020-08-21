@@ -15,7 +15,7 @@ import {
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.query.name - optional - name query string
  */
-const getAllProductsRoute = async (ctx: Context) => {
+const getAllProductsRoute = async (ctx: Context): Promise<void> => {
   try {
     const name = ctx.query.name;
 
@@ -40,7 +40,7 @@ const getAllProductsRoute = async (ctx: Context) => {
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  */
-const getSingleProductRoute = async (ctx: Context) => {
+const getSingleProductRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
 
@@ -61,7 +61,7 @@ const getSingleProductRoute = async (ctx: Context) => {
  * @param {Context} ctx - Koa context object
  * @param {string} ctx.params.id - required - Product ID url parameter
  */
-const getAllProductOptionsRoute = async (ctx: Context) => {
+const getAllProductOptionsRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
 
@@ -83,7 +83,7 @@ const getAllProductOptionsRoute = async (ctx: Context) => {
  * @param {string} ctx.params.id - required - Product ID url parameter
  * @param {string} ctx.params.optionId - required - Product Option ID url parameter
  */
-const getSingleProductOptionRoute = async (ctx: Context) => {
+const getSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
@@ -104,7 +104,7 @@ const getSingleProductOptionRoute = async (ctx: Context) => {
  * GET Product Routes Collection
  * @function getProductRoutes
  */
-export const getProductRoutes = () => {
+export const getProductRoutes = (): Router => {
   const router = new Router();
 
   router.get('/products', getAllProductsValidation, getAllProductsRoute);

@@ -2,7 +2,7 @@ import { Context, Next } from 'koa';
 import { UNPROCESSABLE_ENTITY } from 'http-status';
 import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
 
-export const deleteSingleProductValidation = async (ctx: Context, next: Next) => {
+export const deleteSingleProductValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
     await productIdSchema.validateAsync({ productId });
@@ -14,7 +14,7 @@ export const deleteSingleProductValidation = async (ctx: Context, next: Next) =>
   }
 };
 
-export const deleteSingleProductOptionValidation = async (ctx: Context, next: Next) => {
+export const deleteSingleProductOptionValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;

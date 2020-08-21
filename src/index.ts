@@ -7,7 +7,6 @@ config({ path: path.resolve(__dirname, '..', '.env') });
 // Dependencies
 import Koa from 'koa';
 import helmet from 'koa-helmet';
-import ratelimit from 'koa-ratelimit';
 import bodyParser from 'koa-body';
 import logger from 'koa-logger';
 

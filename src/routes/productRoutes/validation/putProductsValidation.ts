@@ -10,7 +10,7 @@ const updateProductSchema = Joi.object({
   deliveryPrice: Joi.number(),
 }).options({ abortEarly: false, allowUnknown: false });
 
-export const putNewSingleProductValidation = async (ctx: Context, next: Next) => {
+export const putNewSingleProductValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
 
@@ -33,7 +33,7 @@ const updateProductOptionsSchema = Joi.object({
   description: Joi.string(),
 }).options({ abortEarly: false, allowUnknown: false });
 
-export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
+export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;

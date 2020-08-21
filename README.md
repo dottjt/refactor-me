@@ -1,15 +1,14 @@
-### Xero Application
+### Refactor Me
 
-Welcome! My name is Julius and this is my refactor! I knocked it up over an entire Saturday, I really didn't want to spend more time than a day.
+Hello! My name is Julius and this is my refactor! I knocked it up over the weekend and I'm pretty happy with what I managed to achieve.
 
-Ultimately, my intention with this assignment is to demonstrate that I have a high-level understanding of how to write quality code. It is by no means production ready, as that would take weeks of my time, as well as significantly increase the complexity of the project i.e. handling secrets, but I try and paint a complete picture.
-
-I've also gone and changed a number of conventions to make it more of a node.js project i.e. snakeCase, so please keep that in mind!
+Ultimately, my intention with this assignment was to demonstrate a high-level understanding of quality, purposeful code. It is by no means production ready, as that would take waaayyyyy too long, as well as significantly increase the complexity of the project i.e. handling secrets, but I've attempted to paint a complete picture with what's here.
 
 ## Specs
 
 Language: TypeScript
-Server Framework: Koa
+Server: Koa
+Testing: Jest, Supertest
 Database: PostgreSQL
 
 ## How To Run
@@ -37,28 +36,28 @@ The application is also pre-populated with seed data for testing purposes. Just 
 - Decided to rewrite everything from the ground-up in node.js, since that's what I primarily work with. Also changed the datastore from SQLite to PostgreSQL.
 - Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. It produces cleaner code, in my opinion.
 - My guiding principle whilst building this was to make the code as readable and as searchable as possible. I tried to make everything as explicit as possible.
-- I didn't take the commits seriously, at all.
+- I didn't take the commit messages, nor their contents, seriously. At all.
 
 ## Improvements
 
 - I basically rewrote everything.
 - I changed the way a lot things worked (such as removing the `isNew` flag to determine whether it's a directive to create/update).
 - Added some much needed documentation for the routes.
-- Added integration tests for the API endpoints.
-- Added API validation.
+- Added extensive integration testing for the API endpoints.
+- Added extensive API validation. Very happy with how this turned out.
+- Added linting.
 - Added githooks.
 
 ## If I Had More Time
 
 - Setup SSL.
 - Setup some sort of external error alerting i.e. Sentry.
-- Setup Docker configurations for both testing and production.
-- Setup some sort of contract testing (technically it would just be the verifier).
+- Setup Scripts/Docker configurations for a production build.
 - Setup some sort of CI/CD i.e. Buildkite.
-- Setup some sort of integration testing with the database.
-- Fixtures file of all the different available products for testing purposes.
+- Setup some sort of contract testing (technically it would just be the verifier).
+- Create etensive fixture files of all the different available products.
 - Implement test coverage i.e. NYC, as well as set testing thresholds.
-- Probably refactor the route validation, and write tests for it as well.
+- Write tests specific to the route validation (although technically they're tested via the integration testing).
 - Add some form of rate limiting with a Redis cache.
 - Add additional JSDoc annotations.
 
@@ -66,9 +65,10 @@ The application is also pre-populated with seed data for testing purposes. Just 
 
 - SSL port number `44335` seemingly wrong?
 
-## Opinions
+## Additional
 
-- I probably wouldn't allow the client to fetch products with the direct product database id. It exposes too much information about the database, I would much prefer only being able to select objects via the name, or some other kind of identifier.
+- I probably wouldn't allow the client to fetch products with the direct product database id. It exposes too much information about the database (which additionally, is also cached by logging and the browser). I would much prefer only being able to select objects via the name, or some other kind of identifier which isn't the primary key.
+- I have no oversight over the intention of the API. For example, I'm not sure if we want the names to also be unique? Otherwise I can literally just continue .
 
 ## Extras
 

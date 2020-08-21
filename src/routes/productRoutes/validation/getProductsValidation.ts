@@ -2,11 +2,11 @@ import { Context, Next } from 'koa';
 import { UNPROCESSABLE_ENTITY } from 'http-status';
 import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
 
-export const getAllProductsValidation = async (ctx: Context, next: Next) => {
+export const getAllProductsValidation = async (ctx: Context, next: Next): Promise<void> => {
   return next();
 };
 
-export const getSingleProductValidation = async (ctx: Context, next: Next) => {
+export const getSingleProductValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
     await productIdSchema.validateAsync({ productId });
@@ -18,7 +18,7 @@ export const getSingleProductValidation = async (ctx: Context, next: Next) => {
   }
 };
 
-export const getAllProductOptionsValidation = async (ctx: Context, next: Next) => {
+export const getAllProductOptionsValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
     await productIdSchema.validateAsync({ productId });
@@ -30,7 +30,7 @@ export const getAllProductOptionsValidation = async (ctx: Context, next: Next) =
   }
 };
 
-export const getSingleProductOptionValidation = async (ctx: Context, next: Next) => {
+export const getSingleProductOptionValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;

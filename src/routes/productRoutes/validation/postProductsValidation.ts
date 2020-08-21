@@ -9,7 +9,7 @@ const createProductSchema = Joi.object({
   deliveryPrice: Joi.number().required(),
 }).options({ abortEarly: false, allowUnknown: false });
 
-export const postNewSingleProductValidation = async (ctx: Context, next: Next) => {
+export const postNewSingleProductValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const result = await createProductSchema.validateAsync({
       ...ctx.request.body,
@@ -30,7 +30,7 @@ const createProductOptionsSchema = Joi.object({
   description: Joi.string().required(),
 }).options({ abortEarly: false, allowUnknown: false });
 
-export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
+export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
     const productId = ctx.params.id;
 

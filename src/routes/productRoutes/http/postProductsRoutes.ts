@@ -15,7 +15,7 @@ import { postNewSingleProductValidation, postNewSingleProductOptionValidation } 
  * @param {float} ctx.request.body.price - required - price body parameter
  * @param {float} ctx.request.body.deliveryPrice - required - deliveryPrice body parameter
  */
-const postNewSingleProductRoute = async (ctx: Context) => {
+const postNewSingleProductRoute = async (ctx: Context): Promise<void> => {
   try {
     const item =
       await knex<Products>('products')
@@ -41,7 +41,7 @@ const postNewSingleProductRoute = async (ctx: Context) => {
  * @param {string} ctx.request.body.name - required - name body parameter
  * @param {string} ctx.request.body.description - required - description body parameter
  */
-const postNewSingleProductOptionRoute = async (ctx: Context) => {
+const postNewSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
 

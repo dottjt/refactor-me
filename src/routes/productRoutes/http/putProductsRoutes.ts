@@ -16,7 +16,7 @@ import { putNewSingleProductValidation, putNewSingleProductOptionValidation } fr
  * @param {float} ctx.request.body.price - optional - price body parameter
  * @param {float} ctx.request.body.deliveryPrice - optional - deliveryPrice body parameter
  */
-export const putUpdateSingleProductRoute = async (ctx: Context) => {
+export const putUpdateSingleProductRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
 
@@ -45,7 +45,7 @@ export const putUpdateSingleProductRoute = async (ctx: Context) => {
  * @param {string} ctx.request.body.name - optional - name body parameter
  * @param {string} ctx.request.body.description - optional - description body parameter
  */
-export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
+export const putUpdateSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
