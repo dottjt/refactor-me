@@ -28,7 +28,6 @@ export async function seed(knex: Knex): Promise<any> {
     productId: productOneId,
     name: 'Amazing Product One Option Name One',
     description: 'Amazing Product One Option Description One',
-    isNew: true
   });
 
   const productOneOptionTwoId = '83216af3-8ef0-4da8-a3b5-be2978f6c961';
@@ -37,7 +36,6 @@ export async function seed(knex: Knex): Promise<any> {
     productId: productOneId,
     name: 'Amazing Product One Option Name Two',
     description: 'Amazing Product One Option Description Two',
-    isNew: true
   });
 
   const productTwoOptionOneId = '29b27d19-e4bb-4c4e-8ef1-d163870815a2';
@@ -46,6 +44,5 @@ export async function seed(knex: Knex): Promise<any> {
     productId: productTwoId,
     name: 'Amazing Product Two Option Name One',
     description: 'Amazing Product Two Option Description One',
-    isNew: true
   });
 }

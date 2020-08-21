@@ -6,7 +6,6 @@ export async function up(knex: Knex): Promise<any> {
     table.uuid('productId').references('products.id').notNullable();
     table.string('name').notNullable();
     table.string('description').notNullable();
-    table.boolean('isNew').notNullable();
     table.timestamps(true, true);
   });
 }

@@ -44,7 +44,6 @@ export const putUpdateSingleProductRoute = async (ctx: Context) => {
  *
  * @param {string} ctx.request.body.name - optional - name body parameter
  * @param {string} ctx.request.body.description - optional - description body parameter
- * @param {boolean} ctx.request.body.isNew - optional - isNew body parameter
  */
 export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
   try {
@@ -53,7 +52,6 @@ export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
     const {
       name,
       description,
-      isNew,
     } = ctx.request.body;
 
     const productOption =
@@ -65,7 +63,6 @@ export const putUpdateSingleProductOptionRoute = async (ctx: Context) => {
         .update({
           name,
           description,
-          isNew,
         })
         .returning('*');
 

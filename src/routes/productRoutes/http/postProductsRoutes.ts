@@ -40,7 +40,6 @@ const postNewSingleProductRoute = async (ctx: Context) => {
  *
  * @param {string} ctx.request.body.name - required - name body parameter
  * @param {string} ctx.request.body.description - required - description body parameter
- * @param {boolean} ctx.request.body.isNew - required - isNew body parameter
  */
 const postNewSingleProductOptionRoute = async (ctx: Context) => {
   try {

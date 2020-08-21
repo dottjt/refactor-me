@@ -11,5 +11,4 @@ export type ProductOptions = {
   productId: string;
   name: string;
   description: string;
-  isNew: boolean;
 }

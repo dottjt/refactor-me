@@ -14,6 +14,7 @@ export const postNewSingleProductValidation = async (ctx: Context, next: Next) =
     await createProductSchema.validateAsync({
       ...ctx.request.body,
     });
+
     return next();
   } catch (error) {
     ctx.status = UNPROCESSABLE_ENTITY;
@@ -25,7 +26,6 @@ const createProductOptionsSchema = Joi.object({
   productId: Joi.string().guid({ version: 'uuidv4' }).required(),
   name: Joi.string().required(),
   description: Joi.string().required(),
-  isNew: Joi.boolean().required(),
 }).options({ allowUnknown: false });
 
 export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {

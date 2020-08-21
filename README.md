@@ -39,6 +39,15 @@ The application is also pre-populated with seed data for testing purposes. Just 
 - My guiding principle whilst building this was to make the code as readable and as searchable as possible. I tried to make everything as explicit as possible.
 - I didn't take the commits seriously, at all.
 
+## Improvements
+
+- I basically rewrote everything.
+- I changed the way a lot things worked (such as removing the `isNew` flag to determine whether it's a directive to create/update).
+- Added some much needed documentation for the routes.
+- Added integration tests for the API endpoints.
+- Added API validation.
+- Added githooks.
+
 ## If I Had More Time
 
 - Setup SSL.
@@ -48,17 +57,10 @@ The application is also pre-populated with seed data for testing purposes. Just 
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of integration testing with the database.
 - Fixtures file of all the different available products for testing purposes.
-- Implement test coverage i.e. NYC, as well as make it blocking.
+- Implement test coverage i.e. NYC, as well as set testing thresholds.
 - Probably refactor the route validation, and write tests for it as well.
-- Add more inline JSDoc annotations.
-
-## Improvements
-
-- I changed the way some things worked (such as removing the `isNew` flag to determine whether to update or , I really don't like the idea of that)
-- Added some much needed documentation for the routes.
-- Added rate limiting.
-- Added API validation.
-- Added githooks.
+- Add some form of rate limiting with a Redis cache.
+- Add additional JSDoc annotations.
 
 ## Discovered Errors
 

@@ -20,11 +20,6 @@ const main = async () => {
 
   app
     .use(helmet())
-    // .use(ratelimit({
-      //   db: 'memory',
-      //   duration: 60000,
-      //   max: 100,
-      // }))
     .use(bodyParser())
     .use(logger())
     .use(productRouter().routes())

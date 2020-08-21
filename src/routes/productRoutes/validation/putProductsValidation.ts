@@ -31,7 +31,6 @@ const updateProductOptionsSchema = Joi.object({
   productId: Joi.string().guid({ version: 'uuidv4' }).required(),
   name: Joi.string(),
   description: Joi.string(),
-  isNew: Joi.boolean(),
 }).options({ allowUnknown: false });
 
 export const putNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
