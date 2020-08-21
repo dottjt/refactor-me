@@ -1,5 +1,4 @@
 import * as Knex from 'knex';
-import { v4 as uuidv4 } from 'uuid';
 
 export async function seed(knex: Knex): Promise<any> {
   await knex('products').del();
@@ -32,7 +31,7 @@ export async function seed(knex: Knex): Promise<any> {
     isNew: true
   });
 
-  const productOneOptionTwoId = '1ed606ed-6bfc-4198-92a5-a9577028da5a';
+  const productOneOptionTwoId = '83216af3-8ef0-4da8-a3b5-be2978f6c961';
   await knex('productOptions').insert({
     id: productOneOptionTwoId,
     productId: productOneId,

@@ -1,11 +1,10 @@
+import Router from '@koa/router';
 import { Context } from "koa"
 import { v4 as uuidv4 } from 'uuid';
 
 import knex from "../../../util/knex"
 import { Products, ProductOptions } from "../../../types/productTypes"
 import { postNewSingleProductValidation, postNewSingleProductOptionValidation } from "../validation/postProductsValidation";
-
-
 
 // 4. `POST /products` - creates a new product.
 export const postNewSingleProduct = async (ctx: Context) => {
@@ -62,7 +61,9 @@ export const postNewSingleProductOption = async (ctx: Context) => {
   }
 }
 
-export const postProductRoutes = (router) => {
+export const postProductRoutes = (router): Router => {
+  const router = new Router();
+
   router.post('/products', postNewSingleProductValidation, postNewSingleProduct);
   router.post('/products/:id/options', postNewSingleProductOptionValidation, postNewSingleProductOption);
 

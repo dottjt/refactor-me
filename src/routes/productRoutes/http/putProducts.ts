@@ -1,5 +1,7 @@
-import knex from "../../../util/knex"
+import Router from '@koa/router';
 import { Context } from "koa"
+
+import knex from "../../../util/knex"
 import { Products, ProductOptions } from "../../../types/productTypes"
 import { putNewSingleProductValidation, putNewSingleProductOptionValidation } from "../validation/putProductsValidation";
 
@@ -62,7 +64,9 @@ export const putUpdateSingleProductOption = async (ctx: Context) => {
   }
 }
 
-export const putProductRoutes = (router) => {
+export const putProductRoutes = (): Router => {
+  const router = new Router();
+
   router.put('/products/:id', putNewSingleProductValidation, putUpdateSingleProduct);
   router.put('/products/:id/options/:optionId', putNewSingleProductOptionValidation, putUpdateSingleProductOption);
 

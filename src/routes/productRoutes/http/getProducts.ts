@@ -1,4 +1,5 @@
-import { Context, Next } from "koa";
+import Router from '@koa/router';
+import { Context } from "koa";
 import knex from "../../../util/knex";
 import { Products, ProductOptions } from "../../../types/productTypes";
 import {
@@ -12,13 +13,15 @@ import {
 // 2. `GET /products?name={name}` - finds all products matching the specified name.
 const getAllProducts = async (ctx: Context) => {
   try {
-    const name = ctx.query;
+    // const name = ctx.query;
     // Rate limiting node.js API
     // Add limitation to the number of products you can retrieve
-
+    console.log('hi');
     console.log(ctx.query);
 
     const products = await knex<Products>('products').select('*');
+
+    console.log(products);
 
     ctx.body = { data: { items: products } };
   } catch(error) {
@@ -76,7 +79,9 @@ const getSingleProductOption = async (ctx: Context) => {
   }
 }
 
-export const getProductRoutes = (router) => {
+export const getProductRoutes = () => {
+  const router = new Router();
+
   router.get('/products', getAllProductsValidation, getAllProducts);
   router.get('/products/:id', getSingleProductValidation, getSingleProduct);
   router.get('/products/:id/options', getAllProductOptionsValidation, getAllProductOptions);

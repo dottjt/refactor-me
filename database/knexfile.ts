@@ -2,6 +2,9 @@ import path from 'path';
 import { config } from 'dotenv';
 config({ path: path.resolve(__dirname, '..', '.env') });
 
+console.log(process.env.POSTGRES_HOST)
+console.log(process.env.POSTGRES_PASSWORD)
+
 module.exports = {
   development: {
     client: 'postgresql',
@@ -15,6 +18,9 @@ module.exports = {
     pool: {
       min: 2,
       max: 10,
+    },
+    seeds: {
+      directory: path.resolve(__dirname, 'seeds'),
     },
     migrations: {
       directory: path.resolve(__dirname, 'migrations'),

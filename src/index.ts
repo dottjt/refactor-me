@@ -6,12 +6,10 @@ config({ path: path.resolve(__dirname, '..', '.env') });
 
 // Dependencies
 import Koa from 'koa';
-import bodyParser from 'koa-body';
 import helmet from 'koa-helmet';
-import logger from 'koa-logger';
-
 import ratelimit from 'koa-ratelimit';
-import Redis from 'ioredis';
+import bodyParser from 'koa-body';
+import logger from 'koa-logger';
 
 // Routes
 import { productRouter } from './routes/productRoutes/productRouter';
@@ -22,16 +20,17 @@ const main = async () => {
 
   app
     .use(helmet())
-    .use(ratelimit({
-      driver: 'redis',
-      db: new Redis(),
-      duration: 60000,
-      max: 100,
-    }))
+    // .use(ratelimit({
+    //   db: 'memory',
+    //   duration: 60000,
+    //   max: 100,
+    // }))
     .use(logger())
     .use(bodyParser())
     .use(productRouter().routes())
-    .listen(7777)
+    .listen(4000)
+
+  console.log('app listening on port 4000');
 }
 
 main();

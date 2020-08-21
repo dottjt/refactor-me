@@ -47,12 +47,11 @@ The application is also pre-populated with seed data so you can use it as is. Ju
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of integration testing with the database.
 - Fixtures file of all the different products available.
--
 
 ## Improvements
 
 - Added validation.
--
+- Added githooks.
 
 ## Discovered Errors
 

@@ -1,6 +1,8 @@
-import { Context, Next } from "koa";
-import { Products } from "../../../types/productTypes";
-import knex from "../../../util/knex";
+import Router from '@koa/router';
+import { Context } from 'koa';
+
+import knex from '../../../util/knex';
+import { Products } from '../../../types/productTypes';
 
 // /products/{id}
 // deletes a product and its options.
@@ -17,7 +19,6 @@ const deleteSingleProduct = async (ctx: Context) => {
     throw new Error(error);
   }
 }
-
 
 // /products/{id}/options/{optionId}
 // deletes the specified product option.
@@ -36,7 +37,9 @@ const deleteSingleProductOption = async (ctx: Context) => {
   }
 }
 
-export const deleteProductRoutes = (router) => {
+export const deleteProductRoutes = (): Router => {
+  const router = new Router();
+
   router.delete('/products/:id', deleteSingleProduct);
   router.delete('/products/:id/options/:optionId', deleteSingleProductOption);
 
