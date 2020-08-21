@@ -1,6 +1,6 @@
 import Router from '@koa/router';
 import { Context } from "koa";
-import knex from "../../../util/knex";
+import { knex } from "../../../util/knex";
 import { Products, ProductOptions } from "../../../types/productTypes";
 import {
   getAllProductsValidation,
@@ -9,19 +9,24 @@ import {
   getSingleProductOptionValidation
 } from "../validation/getProductsValidation";
 
-// 1. `GET /products` - gets all products.
-// 2. `GET /products?name={name}` - finds all products matching the specified name.
-const getAllProducts = async (ctx: Context) => {
+/**
+ * Retrieve all Products, or finds all Products matching a specified name
+ * @function getAllProducts
+ * @param {Context} ctx - Koa context object
+ * @param {string} ctx.query.name - optional name query string
+ */
+export const getAllProducts = async (ctx: Context) => {
   try {
-    // const name = ctx.query;
-    // Rate limiting node.js API
-    // Add limitation to the number of products you can retrieve
-    console.log('hi');
-    console.log(ctx.query);
+    const name = ctx.query.name;
 
-    const products = await knex<Products>('products').select('*');
-
-    console.log(products);
+    const products = name ? (
+      await knex<Products>('products')
+        .where({ name })
+        .select('*')
+    ) : (
+      await knex<Products>('products')
+        .select('*')
+    );
 
     ctx.body = { data: { items: products } };
   } catch(error) {
@@ -29,7 +34,12 @@ const getAllProducts = async (ctx: Context) => {
   }
 }
 
-// 3. `GET /products/{id}` - gets the project that matches the specified ID - ID is a
+/**
+ * Gets the Product that matches the specified Product ID
+ * @function getSingleProduct
+ * @param {Context} ctx - Koa context object
+ * @param {string} ctx.params.id - required - Product ID url parameter
+ */
 const getSingleProduct = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
@@ -45,7 +55,12 @@ const getSingleProduct = async (ctx: Context) => {
   }
 }
 
-// 7. `GET /products/{id}/options` - finds all options for a specified product.
+/**
+ * Finds all options for a specified product ID
+ * @function getAllProductOptions
+ * @param {Context} ctx - Koa context object
+ * @param {string} ctx.params.id - required - Product ID url parameter
+ */
 const getAllProductOptions = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
@@ -61,7 +76,13 @@ const getAllProductOptions = async (ctx: Context) => {
   }
 }
 
-// 8. `GET /products/{id}/options/{optionId}`
+/**
+ * Finds the specified Product Option for the specified Product ID
+ * @function getSingleProductOption
+ * @param {Context} ctx - Koa context object
+ * @param {string} ctx.params.id - required - Product ID url parameter
+ * @param {string} ctx.params.optionId - required - Product Option ID url parameter
+ */
 const getSingleProductOption = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
@@ -79,6 +100,10 @@ const getSingleProductOption = async (ctx: Context) => {
   }
 }
 
+/**
+ * GET Product Routes Collection
+ * @function getProductRoutes
+ */
 export const getProductRoutes = () => {
   const router = new Router();
 

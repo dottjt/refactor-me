@@ -3,21 +3,21 @@ import { Context, Next } from 'koa';
 import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
 
 export const getAllProductsValidation = async (ctx: Context, next: Next) => {
-  next();
+  return next();
 };
 
 export const getSingleProductValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
   const { error } = await productIdSchema.validateAsync({ productId });
 
-  next();
+  return next();
 };
 
 export const getAllProductOptionsValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
   const { error } = await productIdSchema.validateAsync({ productId });
 
-  next();
+  return next();
 };
 
 export const getSingleProductOptionValidation = async (ctx: Context, next: Next) => {
@@ -27,5 +27,5 @@ export const getSingleProductOptionValidation = async (ctx: Context, next: Next)
     productId, productOptionId
   });
 
-  next();
+  return next();
 };

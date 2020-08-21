@@ -18,7 +18,7 @@ export const postNewSingleProductValidation = async (ctx: Context, next: Next) =
     deliveryPrice,
   });
 
-  next();
+  return next();
 };
 
 export const postNewSingleProductOptionValidation = async (ctx: Context, next: Next) => {
@@ -38,5 +38,5 @@ export const postNewSingleProductOptionValidation = async (ctx: Context, next: N
     productId,
   });
 
-  next();
+  return next();
 };

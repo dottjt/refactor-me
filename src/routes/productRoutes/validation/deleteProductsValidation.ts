@@ -5,7 +5,7 @@ export const deleteSingleProduct = async (ctx: Context, next: Next) => {
     const productId = ctx.params.id;
     const { error } = await productIdSchema.validateAsync({ productId });
 
-    next();
+    return next();
 };
 
 export const deleteSingleProductOption = async (ctx: Context, next: Next) => {
@@ -15,5 +15,5 @@ export const deleteSingleProductOption = async (ctx: Context, next: Next) => {
         productId, productOptionId
     });
 
-    next();
+    return next();
 };

@@ -1,11 +1,20 @@
 import Router from '@koa/router';
 import { Context } from "koa"
 
-import knex from "../../../util/knex"
+import { knex } from "../../../util/knex"
 import { Products, ProductOptions } from "../../../types/productTypes"
 import { putNewSingleProductValidation, putNewSingleProductOptionValidation } from "../validation/putProductsValidation";
 
-// 5. `PUT /products/{id}` - updates a product.
+/**
+ * Updates a Product
+ * @function putUpdateSingleProduct
+ * @param {Context} ctx - Koa context object
+ * @param {string} ctx.params.id - required - Product Option ID url parameter
+ * @param {string} ctx.body.name - optional - name body parameter
+ * @param {string} ctx.body.description - optional - description body parameter
+ * @param {float} ctx.body.price - optional - price body parameter
+ * @param {float} ctx.body.deliveryPrice - optional - deliveryPrice body parameter
+ */
 export const putUpdateSingleProduct = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
@@ -34,6 +43,16 @@ export const putUpdateSingleProduct = async (ctx: Context) => {
 }
 
 // 10. `PUT /products/{id}/options/{optionId}` - updates the specified product option.
+/**
+ * Updates the specified Product Option
+ * @function postNewSingleProductOption
+ * @param {Context} ctx - Koa context object
+ * @param {string} ctx.params.id - required - Product Option ID url parameter
+ * @param {string} ctx.params.optionId - required - name body parameter
+ * @param {string} ctx.body.name - optional - name body parameter
+ * @param {string} ctx.body.description - optional - description body parameter
+ * @param {boolean} ctx.body.isNew - optional - isNew body parameter
+ */
 export const putUpdateSingleProductOption = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
@@ -64,6 +83,10 @@ export const putUpdateSingleProductOption = async (ctx: Context) => {
   }
 }
 
+/**
+ * PUT Product Routes Collection
+ * @function putProductRoutes
+ */
 export const putProductRoutes = (): Router => {
   const router = new Router();
 

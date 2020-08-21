@@ -1,6 +1,6 @@
 import Knex from 'knex';
 
-const knex: Knex = Knex({
+export const knex: Knex = Knex({
   client: 'pg',
   useNullAsDefault: true,
   connection: {
@@ -12,4 +12,3 @@ const knex: Knex = Knex({
   }
 });
 
-export default knex;

@@ -2,7 +2,7 @@
 
 Welcome! My name is Julius and this is my refactor!
 
-Ultimately my intention with this assignment is to demonstrate that I have a high-level understanding of how to write quality code. It is by no means production ready, as that would take weeks as well as significantly increase the complexity of the project i.e. handling secrets, but I try and paint a complete picture.
+Ultimately, my intention with this assignment is to demonstrate that I have a high-level understanding of how to write quality code. It is by no means production ready, as that would take weeks of my time, as well as significantly increase the complexity of the project i.e. handling secrets, but I try and paint a complete picture.
 
 I've also gone and changed a number of conventions to make it more of a node.js project i.e. snakeCase, so please keep that in mind!
 
@@ -29,46 +29,49 @@ Alternatively if you'd like to run it locally:
 - `GRANT ALL PRIVILEGES ON DATABASE refactor_me TO refactor_me_user;`
 - `npm run start:dev`
 
-The application is also pre-populated with seed data so you can use it as is. Just head to `./database/seeds/development_seed_data.ts` if you'd like to see the pre-defined values.
+The application is also pre-populated with seed data for testing purposes. Just head to `./database/seeds/development_seed_data.ts` if you'd like to see the pre-defined values.
 
 ## Decisions
 
-- Decided to rewrite everything from the ground-up in node.js, since that's what I primarily work with and enjoy the most.
-- Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. In my opinion it produces cleaner code.
-- Optimised the codebase around searchability. I believe this is important and it reduces the mental overloading of writing code.
-- General use of `export` instead of `export default` in order to maintain explicit relations.
-- I really like using GraphQL, especially from the perspective of the client, but it was clear that this was a rest API.
+- Decided to rewrite everything from the ground-up in node.js, since that's what I primarily work with.
+- Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. It produces cleaner code, in my opinion.
+- My guiding principle whilst building this was to make the code as readable and as searchable as possible. I tried to make everything as explicit as possible.
 
 ## If I Had More Time
 
+- Setup SSL.
 - Setup some sort of error alerting i.e. Sentry.
 - Setup Docker configurations for both testing and production to work with CI/CD.
 - Setup some sort of contract testing (technically it would just be the verifier).
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of integration testing with the database.
-- Fixtures file of all the different products available.
+- Fixtures file of all the different available products for testing purposes.
+- Implement
+- Add test coverage
 
 ## Improvements
 
-- Added validation.
+- Added some much needed documentation.
+- Added API validation.
 - Added githooks.
 
 ## Discovered Errors
 
 - SSL port number `44335` seemingly wrong?
 
-## Migrations
+## Opinions
+
+- I probably wouldn't allow the client to fetch products with the direct product database id. It exposes too much information about the database, I would much prefer only being able to select objects via the name, or some other kind of identifier.
+
+
+## Extra
+
+### Migrations
 
 - `npx knex --knexfile ./database/knexfile.ts migrate:make products -x ts`
 - `npx knex --knexfile ./database/knexfile.ts migrate:make product_options -x ts`
 
-## Setup Local Postgres
-
-- Setup postgres
-
-
-
-// unused
+### unused
 
 "-- -- -- -- START SCRIPTS PROD -- -- -- -- ": "--",
 "start:prod": "NODE_ENV=production npm run knex:migrate:prod && NODE_ENV=production npx ts-node ./src/index.ts",
