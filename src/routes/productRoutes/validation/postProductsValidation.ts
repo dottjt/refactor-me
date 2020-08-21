@@ -1,4 +1,5 @@
 import { Context, Next } from 'koa';
+import { UNPROCESSABLE_ENTITY } from 'http-status';
 import Joi from 'joi';
 
 const createProductSchema = Joi.object({
@@ -23,7 +24,12 @@ export const postNewSingleProductValidation = async (ctx: Context, next: Next) =
     deliveryPrice,
   });
 
-  return next();
+  if (error) {
+    ctx.status = UNPROCESSABLE_ENTITY;
+    ctx.body = error;
+  } else {
+    return next();
+  }
 };
 
 const createProductOptionsSchema = Joi.object({
@@ -48,5 +54,10 @@ export const postNewSingleProductOptionValidation = async (ctx: Context, next: N
     productId,
   });
 
-  return next();
+  if (error) {
+    ctx.status = UNPROCESSABLE_ENTITY;
+    ctx.body = error;
+  } else {
+    return next();
+  }
 };

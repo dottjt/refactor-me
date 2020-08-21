@@ -1,4 +1,5 @@
 import { Context, Next } from 'koa';
+import { UNPROCESSABLE_ENTITY } from 'http-status';
 import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
 
 export const getAllProductsValidation = async (ctx: Context, next: Next) => {
@@ -9,14 +10,24 @@ export const getSingleProductValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
   const { error } = await productIdSchema.validateAsync({ productId });
 
-  return next();
+  if (error) {
+    ctx.status = UNPROCESSABLE_ENTITY;
+    ctx.body = error;
+  } else {
+    return next();
+  }
 };
 
 export const getAllProductOptionsValidation = async (ctx: Context, next: Next) => {
   const productId = ctx.params.id;
   const { error } = await productIdSchema.validateAsync({ productId });
 
-  return next();
+  if (error) {
+    ctx.status = UNPROCESSABLE_ENTITY;
+    ctx.body = error;
+  } else {
+    return next();
+  }
 };
 
 export const getSingleProductOptionValidation = async (ctx: Context, next: Next) => {
@@ -26,5 +37,10 @@ export const getSingleProductOptionValidation = async (ctx: Context, next: Next)
     productId, productOptionId
   });
 
-  return next();
+  if (error) {
+    ctx.status = UNPROCESSABLE_ENTITY;
+    ctx.body = error;
+  } else {
+    return next();
+  }
 };
