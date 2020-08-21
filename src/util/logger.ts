@@ -25,6 +25,4 @@ const createLogger = (): Logger => {
   return logger;
 }
 
-const logger: Logger = createLogger();
-
-export default logger;
+export const logger: Logger = createLogger();

@@ -1,9 +1,9 @@
 import { Context, Next } from "koa"
-import knex from "../../../db/knex"
+import knex from "../../../util/knex"
 import { Products, ProductOptions } from "../../../types/productTypes"
 
 // 4. `POST /products` - creates a new product.
-export const postNewProduct = async (ctx: Context, next: Next) => {
+export const postNewSingleProduct = async (ctx: Context) => {
   try {
     const {
       id,
@@ -31,7 +31,7 @@ export const postNewProduct = async (ctx: Context, next: Next) => {
 }
 
 // 9. `POST /products/{id}/options` - adds a new product option to the specified product.
-export const postNewProductOption = async (ctx: Context, next: Next) => {
+export const postNewSingleProductOption = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const {
@@ -57,4 +57,11 @@ export const postNewProductOption = async (ctx: Context, next: Next) => {
   } catch(error) {
     throw new Error(error);
   }
+}
+
+export const postProductRoutes = (router) => {
+  router.post('/products', postNewSingleProduct);
+  router.post('/products/:id/options', postNewSingleProductOption);
+
+  return router;
 }

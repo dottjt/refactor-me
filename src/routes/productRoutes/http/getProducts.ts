@@ -1,11 +1,17 @@
 import { Context, Next } from "koa";
-import knex from "../../../db/knex";
+import knex from "../../../util/knex";
 import { Products, ProductOptions } from "../../../types/productTypes";
+import {
+  getAllProductsValidation,
+  getSingleProductValidation,
+  getAllProductOptionsValidation,
+  getSingleProductOptionValidation
+} from "../validation/getProductsValidation";
 
 
 // 1. `GET /products` - gets all products.
 // 2. `GET /products?name={name}` - finds all products matching the specified name.
-export const getAllProducts = async (ctx: Context, next: Next) => {
+const getAllProducts = async (ctx: Context) => {
   try {
     // Rate limiting node.js API
     // Add limitation to the number of products you can retrieve
@@ -21,7 +27,7 @@ export const getAllProducts = async (ctx: Context, next: Next) => {
 }
 
 // 3. `GET /products/{id}` - gets the project that matches the specified ID - ID is a
-export const getSingleProduct = async (ctx: Context, next: Next) => {
+const getSingleProduct = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
 
@@ -37,7 +43,7 @@ export const getSingleProduct = async (ctx: Context, next: Next) => {
 }
 
 // 7. `GET /products/{id}/options` - finds all options for a specified product.
-export const getAllProductOptions = async (ctx: Context, next: Next) => {
+const getAllProductOptions = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
 
@@ -52,8 +58,8 @@ export const getAllProductOptions = async (ctx: Context, next: Next) => {
   }
 }
 
-// 8. `GET /products/{id}/options/{optionId}` - finds the specified product option for
-export const getSingleProductOption = async (ctx: Context, next: Next) => {
+// 8. `GET /products/{id}/options/{optionId}`
+const getSingleProductOption = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
@@ -70,3 +76,11 @@ export const getSingleProductOption = async (ctx: Context, next: Next) => {
   }
 }
 
+export const getProductRoutes = (router) => {
+  router.get('/products', getAllProductsValidation, getAllProducts);
+  router.get('/products/:id', getSingleProductValidation, getSingleProduct);
+  router.get('/products/:id/options', getAllProductOptionsValidation, getAllProductOptions);
+  router.get('/products/:id/options/:optionId', getSingleProductOptionValidation, getSingleProductOption);
+
+  return router;
+}

@@ -2,8 +2,8 @@ export type Products = {
   id: string;
   name: string;
   description: string;
-  price: Number;
-  deliveryPrice: Number;
+  price: number;
+  deliveryPrice: number;
 }
 
 export type ProductOptions = {

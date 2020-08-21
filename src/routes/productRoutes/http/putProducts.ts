@@ -1,9 +1,9 @@
-import knex from "../../../db/knex"
+import knex from "../../../util/knex"
 import { Context, Next } from "koa"
 import { Products, ProductOptions } from "../../../types/productTypes"
 
 // 5. `PUT /products/{id}` - updates a product.
-export const putUpdateProduct = async (ctx: Context, next: Next) => {
+export const putUpdateSingleProduct = async (ctx: Context) => {
   try {
     const {
       id,
@@ -31,7 +31,7 @@ export const putUpdateProduct = async (ctx: Context, next: Next) => {
 }
 
 // 10. `PUT /products/{id}/options/{optionId}` - updates the specified product option.
-export const putUpdateProductOption = async (ctx: Context, next: Next) => {
+export const putUpdateSingleProductOption = async (ctx: Context) => {
   try {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
@@ -58,4 +58,11 @@ export const putUpdateProductOption = async (ctx: Context, next: Next) => {
   } catch(error) {
     throw new Error(error);
   }
+}
+
+export const putProductRoutes = (router) => {
+  router.put('/products/:id', putUpdateSingleProduct);
+  router.put('/products/:id/options/:optionId', putUpdateSingleProductOption);
+
+  return router;
 }

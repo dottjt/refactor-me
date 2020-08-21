@@ -1,10 +1,11 @@
-version: 3.1
+version: '3.1'
 services:
   refactor-me:
     container_name: refactor-me
     build:
       context: .
       dockerfile: ./Dockerfile
+    ports:
       - 4000:4000
     volumes:
       - ./logs:/app/logs

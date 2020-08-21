@@ -1,7 +1,7 @@
 # refactor-this
 The attached project is a poorly written products API in C#.
 
-Please evaluate and refactor areas where you think can be improved. 
+Please evaluate and refactor areas where you think can be improved.
 
 Consider all aspects of good software engineering and show us how you'll make it #beautiful and make it a production ready code.
 
@@ -70,3 +70,4 @@ All models are specified in the `/Models` folder, but should conform to:
   ]
 }
 ```
+

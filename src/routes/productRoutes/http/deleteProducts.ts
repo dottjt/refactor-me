@@ -1,34 +1,44 @@
 import { Context, Next } from "koa";
 import { Products } from "../../../types/productTypes";
-import knex from "../../../db/knex";
+import knex from "../../../util/knex";
 
 // /products/{id}
 // deletes a product and its options.
-export const deleteSingleProduct = async (ctx: Context, next: Next) => {
-  const productId = ctx.params.id;
+const deleteSingleProduct = async (ctx: Context) => {
+  try {
+    const productId = ctx.params.id;
 
-  // TODO
-  // if (!productId) {
-  // return 422
-  //   ctx.body = { }
-  // }
+    await knex<Products>('products')
+      .where('id', productId)
+      .delete();
 
-  await knex<Products>('products').where('id', productId).delete();
-
-  ctx.body = { data: { message: 'product deleted' } };
+    ctx.body = { data: { message: `product ${productId} deleted.` } };
+  } catch(error) {
+    throw new Error(error);
+  }
 }
 
 
 // /products/{id}/options/{optionId}
 // deletes the specified product option.
-export const deleteSingleProductOption = async (ctx: Context, next: Next) => {
-  const body = ctx.request.body;
+const deleteSingleProductOption = async (ctx: Context) => {
+  try {
+    const productId = ctx.params.id;
+    const productOptionId = ctx.params.optionId;
 
-  // validate whether
+    await knex<Products>('products')
+      .where('id', productId)
+      .delete();
 
-  // Joi validation
+    ctx.body = { data: { message: `Product ${productOptionId} deleted.` } };
+  } catch(error) {
+    throw new Error(error);
+  }
+}
 
-  await knex<Products>('products').where('id', productId).delete();
+export const deleteProductRoutes = (router) => {
+  router.delete('/products/:id', deleteSingleProduct);
+  router.delete('/products/:id/options/:optionId', deleteSingleProductOption);
 
-  ctx.body = { data: { message: `Product ${productId} deleted.` } };
+  return router;
 }
