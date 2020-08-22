@@ -21,7 +21,7 @@ The application has been setup to run locally within docker. This is so you don'
 - `npm install`
 - `npm run start:docker:dev`
 
-You may then listen to the application on port `4000`. i.e. `http://localhost:4000`.
+You may then listen to the application on port `4000`. i.e. `http://localhost:4000`
 
 The application has also been pre-populated with seed data for testing purposes. Just head to `./database/seeds/dev/development_seed_data.ts` or `./database/seeds/test/test_seed_data.ts` if you'd like to see those values.
 
