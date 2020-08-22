@@ -3,6 +3,7 @@ import { Context } from 'koa';
 
 import { knex } from '../../../util/knex';
 import { Products, ProductOptions } from '../../../types/productTypes';
+import { deleteSingleProductValidation, deleteSingleProductOptionValidation } from '../validation/deleteProductsValidation';
 
 /**
  * Delete a Product and its related Product Options
@@ -14,15 +15,18 @@ const deleteSingleProductRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
 
-    await knex<Products>('products')
+    // NOTE: This will also delete all associated productOptions as specified in the productOptions migration file.
+    const result = await knex<Products>('products')
       .where({ id: productId })
       .delete();
 
-    await knex<ProductOptions>('productOptions')
-      .where({ productId: productId })
-      .delete();
+    const message = result === 1 ? (
+      'Product successfully deleted.'
+    ) : (
+      'Product not found.'
+    );
 
-    ctx.body = { data: { id: productId } };
+    ctx.body = { data: { message } };
   } catch(error) {
     throw new Error(error);
   }
@@ -40,14 +44,20 @@ const deleteSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
     const productId = ctx.params.id;
     const productOptionId = ctx.params.optionId;
 
-    await knex<ProductOptions>('productOptions')
+    const result = await knex<ProductOptions>('productOptions')
       .where({
         id: productOptionId,
         productId: productId,
       })
       .delete();
 
-    ctx.body = { data: { id: productOptionId } };
+    const message = result === 1 ? (
+      'Product Option successfully deleted.'
+    ) : (
+      'Product Option not found.'
+    );
+
+    ctx.body = { data: { message } };
   } catch(error) {
     throw new Error(error);
   }
@@ -60,8 +70,8 @@ const deleteSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
 export const deleteProductRoutes = (): Router => {
   const router = new Router();
 
-  router.delete('/products/:id', deleteSingleProductRoute);
-  router.delete('/products/:id/options/:optionId', deleteSingleProductOptionRoute);
+  router.delete('/products/:id', deleteSingleProductValidation, deleteSingleProductRoute);
+  router.delete('/products/:id/options/:optionId', deleteSingleProductOptionValidation, deleteSingleProductOptionRoute);
 
   return router;
 }

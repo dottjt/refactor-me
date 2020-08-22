@@ -94,7 +94,7 @@ const getSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
         .where({ productId: productId })
         .first('*');
 
-    ctx.body = { data: { item: productOption } };
+    ctx.body = { data: { item: productOption || {} } };
   } catch(error) {
     throw new Error(error);
   }

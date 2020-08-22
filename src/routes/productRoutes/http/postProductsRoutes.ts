@@ -25,7 +25,7 @@ const postNewSingleProductRoute = async (ctx: Context): Promise<void> => {
         })
         .returning('*');
 
-    ctx.body = { data: { item } };
+    ctx.body = { data: { item: item[0] } };
   } catch (error) {
     throw new Error(error);
   }
@@ -54,7 +54,7 @@ const postNewSingleProductOptionRoute = async (ctx: Context): Promise<void> => {
         })
         .returning('*');
 
-    ctx.body = { data: { item } };
+    ctx.body = { data: { item: item[0] } };
   } catch (error) {
     throw new Error(error);
   }

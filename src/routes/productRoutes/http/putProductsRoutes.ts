@@ -28,7 +28,7 @@ export const putUpdateSingleProductRoute = async (ctx: Context): Promise<void> =
         })
         .returning('*');
 
-    ctx.body = { data: { product } };
+    ctx.body = { data: { item: product[0] || {} } };
   } catch(error) {
     throw new Error(error);
   }
@@ -66,7 +66,7 @@ export const putUpdateSingleProductOptionRoute = async (ctx: Context): Promise<v
         })
         .returning('*');
 
-    ctx.body = { data: { productOption } };
+    ctx.body = { data: { item: productOption[0] || {} } };
 
   } catch(error) {
     throw new Error(error);

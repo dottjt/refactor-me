@@ -14,7 +14,7 @@ export const local = {
   },
   pool: {
     min: 2,
-    max: 10,
+    max: 100,
   },
   seeds: {
     directory: path.resolve(__dirname, 'seeds', 'dev'),
@@ -36,7 +36,7 @@ export const development = {
   },
   pool: {
     min: 2,
-    max: 10,
+    max: 100,
   },
   seeds: {
     directory: path.resolve(__dirname, 'seeds', 'dev'),
@@ -58,7 +58,7 @@ export const test = {
   },
   pool: {
     min: 2,
-    max: 10,
+    max: 100,
   },
   seeds: {
     directory: path.resolve(__dirname, 'seeds', 'test'),

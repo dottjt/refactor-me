@@ -15,10 +15,8 @@ export const postNewSingleProductValidation = async (ctx: Context, next: Next): 
       ...ctx.request.body,
     });
 
-    console.log(result);
     return next();
   } catch (error) {
-    console.log(error);
     ctx.status = UNPROCESSABLE_ENTITY;
     ctx.body = { data: { errors: error.details } };
   }

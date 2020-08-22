@@ -27,7 +27,7 @@ export const putNewSingleProductValidation = async (ctx: Context, next: Next): P
 };
 
 const updateProductOptionsSchema = Joi.object({
-  id: Joi.string().guid({ version: 'uuidv4' }).required(),
+  productOptionId: Joi.string().guid({ version: 'uuidv4' }).required(),
   productId: Joi.string().guid({ version: 'uuidv4' }).required(),
   name: Joi.string(),
   description: Joi.string(),
@@ -39,7 +39,7 @@ export const putNewSingleProductOptionValidation = async (ctx: Context, next: Ne
     const productOptionId = ctx.params.optionId;
 
     await updateProductOptionsSchema.validateAsync({
-      id: productOptionId,
+      productOptionId,
       productId,
       ...ctx.request.body
     });
