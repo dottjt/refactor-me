@@ -6,10 +6,10 @@ It is by no means production ready, nor complete, as that would take weeks as we
 
 ## Specs
 
-Language: TypeScript
-Server: Node.js, Koa
-Testing: Jest, Supertest
-Database: PostgreSQL
+- Language: TypeScript
+- Server: Node.js, Koa
+- Testing: Jest, Supertest
+- Database: PostgreSQL
 
 ## How To Run
 
@@ -25,7 +25,7 @@ You may then listen to the application on port `4000`. i.e. `http://localhost:40
 
 The application has also been pre-populated with seed data for testing purposes. Just head to `./database/seeds/dev/development_seed_data.ts` or `./database/seeds/test/test_seed_data.ts` if you'd like to see those values.
 
-Here are some random GET endpoints you can try in your browser, although the integration tests prove that all the endpoints are functioning.
+Here are some random GET endpoints you can try in your browser, although the integration tests prove that all HTTP endpoints are correct and functioning.
 
 - `http://localhost:4000/products`
 - `http://localhost:4000/products?name=Amazing Product Name One`
