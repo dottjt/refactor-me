@@ -1,8 +1,8 @@
 import path from 'path';
 
 // ENV
-import { config } from 'dotenv';
-config({ path: path.resolve(__dirname, '..', 'environment', '.env') });
+import { config } from 'dotenv-flow';
+config({ path: path.resolve(__dirname, '..', 'environment'), silent: true });
 
 // Dependencies
 import Koa from 'koa';

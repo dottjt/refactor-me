@@ -1,6 +1,7 @@
 import path from 'path';
-import { config } from 'dotenv';
-config({ path: path.resolve(__dirname, '..', 'environment', '.env') });
+import { config } from 'dotenv-flow';
+
+config({ path: path.resolve(__dirname, '..', 'environment'), silent: true });
 
 export const development = {
   client: 'postgresql',

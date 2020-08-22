@@ -5,9 +5,9 @@ module.exports = {
     '<rootDir>/src',
     '<rootDir>/tests'
   ],
-  // setupFilesAfterEnv: [
-  //   '<rootDir>/src/setupTests.js'
-  // ],
+  setupFilesAfterEnv: [
+    '<rootDir>/tests/setupTests.ts'
+  ],
   testMatch: [
     '<rootDir>/tests/**/*.{spec,api,test}.{js,ts}'
   ],
