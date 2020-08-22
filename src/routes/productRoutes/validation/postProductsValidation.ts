@@ -11,7 +11,7 @@ const createProductSchema = Joi.object({
 
 export const postNewSingleProductValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {
-    const result = await createProductSchema.validateAsync({
+    await createProductSchema.validateAsync({
       ...ctx.request.body,
     });
 
