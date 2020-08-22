@@ -2,11 +2,6 @@
 // import request from 'supertest';
 
 describe('getProductsRoutes', () => {
-  // beforeAll(async () => {
-  //   await knex.migrate.latest()
-  //   await knex.seed.run();
-  // });
-
   describe('getAllProductsRoute - /products', () => {
     it('should retrieve all products', () => {
       expect('cake').toBe('cake');

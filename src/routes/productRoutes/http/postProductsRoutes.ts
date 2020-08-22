@@ -10,8 +10,8 @@ import { postNewSingleProductValidation, postNewSingleProductOptionValidation } 
  * Creates a new Product
  * @function postNewSingleProductRoute
  * @param {Context} ctx - Koa context object
- * @param {string} ctx.request.body.name - required - name body parameter
  * @param {string} ctx.request.body.description - required - description body parameter
+ * @param {string} ctx.request.body.name - required - name body parameter
  * @param {float} ctx.request.body.price - required - price body parameter
  * @param {float} ctx.request.body.deliveryPrice - required - deliveryPrice body parameter
  */

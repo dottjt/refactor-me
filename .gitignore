@@ -3,3 +3,5 @@ logs
 
 node_modules
 environment/.env
+environment/.env.prod
+environment/.env.production

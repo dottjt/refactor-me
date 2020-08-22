@@ -1,11 +1,12 @@
+import { knex } from '../../../src/util/knex';
 
 describe('deleteProductsRoutes', () => {
-  // before((done) => {
-  //   knex.migrate.latest()
-  //       .then(() => {
-  //           return knex.seed.run();
-  //       }).then(() => done())
-  // });
+  beforeAll(async () => {
+    // await knex('products').insert(productOne);
+
+    const products = await knex('products').select('*');
+    console.log(products)
+  });
 
   // it('Lists all users', (done) => {
   //   request(app)

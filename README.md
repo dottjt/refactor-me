@@ -1,13 +1,13 @@
 ### Refactor Me
 
-Hello! My name is Julius and this is my refactor! I knocked it up over the weekend and I'm pretty happy with what I managed to achieve.
+Hello! My name is Julius and this is my refactor! I knocked it up over a weekend and I'm pretty happy with how it turned out.
 
 Ultimately, my intention with this assignment was to demonstrate a high-level understanding of quality, purposeful code. It is by no means production ready, as that would take waaayyyyy too long, as well as significantly increase the complexity of the project i.e. handling secrets, but I've attempted to paint a complete picture with what's here.
 
 ## Specs
 
 Language: TypeScript
-Server: Koa
+Server: Node.js, Koa
 Testing: Jest, Supertest
 Database: PostgreSQL
 
@@ -35,7 +35,7 @@ The application is also pre-populated with seed data for testing purposes. Just 
 
 ### Testing
 
-Testing has been setup exclusively in docker for reasons of idempotency, in part because it relies on a database. It can work on local, but it has neither been tested nor setup for that use-case.
+Testing has been setup exclusively in docker for reasons of idempotency, in part because they're integration tests which rely on the database. It will not work in local because of how the environment variables have been setup.
 
 - `npm run start:docker:test`
 
@@ -66,8 +66,12 @@ Testing has been setup exclusively in docker for reasons of idempotency, in part
 - Create etensive fixture files of all the different available products.
 - Implement test coverage i.e. NYC, as well as set testing thresholds.
 - Write tests specific to the route validation (although technically they're tested via the integration testing).
+- Rewrite the way secrets/environments are being handled, perhaps with dotenv-flow to handle multiple environments, or use some sort of external service.
+- Create a bash scripts folder to handle more complex flows, rather than jamming everything into the package.json.
 - Add some form of rate limiting with a Redis cache.
 - Add additional JSDoc annotations.
+- Get Docker test output to show colours.
+- Make it either `dev` or `development` not both.
 
 ## Discovered Errors
 
@@ -84,19 +88,6 @@ Testing has been setup exclusively in docker for reasons of idempotency, in part
 
 - `npx knex --knexfile ./database/knexfile.ts migrate:make products -x ts`
 - `npx knex --knexfile ./database/knexfile.ts migrate:make productOptions -x ts`
-
-### unused
-
-"-- -- -- -- START SCRIPTS PROD -- -- -- -- ": "--",
-"start:prod": "NODE_ENV=production npm run knex:migrate:prod && NODE_ENV=production npx ts-node ./src/index.ts",
-"start:docker:prod": "NODE_ENV=production npm run docker:build:prod && npm run docker:up:prod",
-
-"docker:up:prod": "docker-compose -f ./deployment/docker/prod/docker-compose.yml up",
-"docker:build:prod": "docker-compose -f ./deployment/docker/prod-build/docker-compose.yml build --no-cache"
-
-"-- -- -- -- DATABASE SCRIPTS PROD -- -- -- -- ": "--",
-"knex:migrate:prod": "NODE_ENV=production npx knex --knexfile ./database/knexfile.ts migrate:latest",
-
 
 ## Original README
 

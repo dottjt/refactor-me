@@ -16,7 +16,7 @@ export const development = {
     max: 10,
   },
   seeds: {
-    directory: path.resolve(__dirname, 'seeds'),
+    directory: path.resolve(__dirname, 'seeds', 'dev'),
   },
   migrations: {
     directory: path.resolve(__dirname, 'migrations'),
@@ -38,7 +38,7 @@ export const test = {
     max: 10,
   },
   seeds: {
-    directory: path.resolve(__dirname, 'seeds'),
+    directory: path.resolve(__dirname, 'seeds', 'test'),
   },
   migrations: {
     directory: path.resolve(__dirname, 'migrations'),
