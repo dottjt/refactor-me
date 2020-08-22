@@ -55,6 +55,7 @@ I also setup integration testing. It's been setup exclusively in docker for reas
 - Setup some sort of external error alerting i.e. Sentry.
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of contract testing (technically it would just be the verifier).
+- Setup some kind of unit testing.
 - Create extensive fixture files of all the different available products.
 - Implement test coverage i.e. NYC, as well as set testing thresholds.
 - Write tests specific to the route validation (even though technically they're tested via the integration testing of the routes).

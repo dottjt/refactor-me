@@ -15,6 +15,9 @@ services:
       - refactor-me-postgres-dev
     networks:
       - refactor-me-network-dev
+    volumes:
+      - ./src:/app/src
+      - ./node_modules:/app/node_modules
 
   refactor-me-postgres-dev:
     image: postgres:alpine

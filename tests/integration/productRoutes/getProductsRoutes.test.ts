@@ -43,7 +43,7 @@ describe('getProductsRoutes', () => {
         .expect(200)
 
       expect(response.body.data.items).toHaveLength(1)
-      expect(response.body.data.items).toMatchObject(productOne);
+      expect(response.body.data.items).toMatchObject([ productOne ]);
     });
 
     it('should retrieve an empty items array if name query string does not exact match any product', async () => {
@@ -82,8 +82,10 @@ describe('getProductsRoutes', () => {
           .get(`/products/${invalidGUID}`)
           .expect('Content-Type', /json/)
           .expect(UNPROCESSABLE_ENTITY)
+
+        console.log(response);
       } catch(error) {
-        console.log(error);
+        expect(error).toBeDefined();
       }
     });
   });

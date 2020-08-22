@@ -27,7 +27,7 @@
     "docker:down:test": "docker-compose -f ./deployment/test/docker-compose-test.yml down",
     "-- -- -- -- DOCKER CMD SCRIPTS -- -- -- -- ": "--",
     "start:dev": "npm run knex:reset:dev && NODE_ENV=development npx ts-node-dev ./src/index.ts --respawn --transpileOnly",
-    "start:test": "npm run knex:reset:test && NODE_ENV=test npx jest"
+    "start:test": "npm run knex:reset:test && NODE_ENV=test npx jest --watch"
   },
   "keywords": [],
   "author": "",

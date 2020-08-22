@@ -43,7 +43,7 @@ const getAllProductsRoute = async (ctx: Context): Promise<void> => {
 const getSingleProductRoute = async (ctx: Context): Promise<void> => {
   try {
     const productId = ctx.params.id;
-
+    
     const product =
       await knex<Products>('products')
         .where({ id: productId })
