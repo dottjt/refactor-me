@@ -2,7 +2,7 @@
 
 Hello! My name is Julius and this is my refactor! I knocked it up over a weekend and I'm pretty happy with how it turned out. I hope you like it too!
 
-It is by no means production ready, as that would take waaayyyyy too long, as well as significantly increase the complexity of the project i.e. handling secrets, but I've attempted to paint a complete picture with what's there, from the codebase itself, to the docker configurations and the testing.
+It is by no means production ready, nor complete, as that would take weeks, as well as significantly increase the complexity of the project i.e. handling secrets, but I've attempted to paint a complete picture with what's here.
 
 ## Specs
 
@@ -15,27 +15,19 @@ Database: PostgreSQL
 
 ### Application
 
-You can either run this locally or within docker. I recommend Docker since it handles the Postgres database for you:
+The application has been setup to run locally within docker. This is so you don't have to handle the database yourself.
 
 - `environment/.env.example` to `environment/.env`
 - `npm install`
 - `npm run start:docker:dev`
 
-Alternatively, if you'd like to run it locally:
-
-- `environment/.env.example` to `environment/.env`
-- `npm install`
-- `psql -U postgres`
-- `CREATE DATABASE refactor_me;`
-- `CREATE USER refactor_me_user WITH ENCRYPTED PASSWORD 'refactor_me_password';`
-- `GRANT ALL PRIVILEGES ON DATABASE refactor_me TO refactor_me_user;`
-- `npm run start:dev`
+It listens on port `4000`. i.e. `http://localhost:4000`
 
 The application is also pre-populated with seed data for testing purposes. Just head to `./database/seeds/dev/development_seed_data.ts` or `./database/seeds/test/test_seed_data.ts` if you'd like to see the pre-defined values.
 
 ### Testing
 
-I decided to setup integration testing. It's been setup exclusively in docker for reasons of idempotency, in part because they're integration tests which rely on the database. It might work in local, but I haven't really tested it.
+I also setup integration testing. It's been setup exclusively in docker for reasons of idempotency, in part because they're integration tests which rely on the database. It might work in local, but I haven't really tested it.
 
 - `npm run start:docker:test`
 
@@ -85,13 +77,6 @@ I decided to setup integration testing. It's been setup exclusively in docker fo
 
 - I probably wouldn't allow the client to fetch products with the direct product database id. It exposes too much information about the database (which additionally, is also cached via external logging and even the browser). I would much prefer only being able to select objects via the name, or some other kind of identifier which isn't the primary key.
 - I have no oversight over the intention of the API, so for example, I'm not sure if the product names should have also been unique? Otherwise I can literally just continue to create products infinitely with the same data. Which I dunno, may be exactly what you want.
-
-## Extras
-
-### Migrations
-
-- `npx knex --knexfile ./database/knexfile.ts migrate:make products -x ts`
-- `npx knex --knexfile ./database/knexfile.ts migrate:make productOptions -x ts`
 
 ## Original README
 

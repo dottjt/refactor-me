@@ -17,11 +17,11 @@ import {
  */
 const getAllProductsRoute = async (ctx: Context): Promise<void> => {
   try {
-    const name = decodeURI(ctx.query.name);
+    const name = ctx.query.name;
 
     const products = name ? (
       await knex<Products>('products')
-        .where({ name })
+        .where({ name: decodeURI(name).replace(/['"]+/g, '') })
         .select('*')
     ) : (
       await knex<Products>('products')

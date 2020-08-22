@@ -4,7 +4,7 @@ services:
     container_name: refactor-me-dev
     build:
       context: ../../
-      dockerfile: ./deployment/dev/Dockerfile.dev
+      dockerfile: ./deployment/development/Dockerfile.development
     ports:
       - 4000:4000
     volumes:
@@ -24,7 +24,7 @@ services:
     restart: always
     env_file:
       - ../../environment/.env
-      - ../../environment/.env.dev
+      - ../../environment/.env.development
     networks:
       - refactor-me-network-dev
 
