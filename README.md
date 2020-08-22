@@ -2,7 +2,7 @@
 
 Hello! My name is Julius and this is my refactor! I knocked it up over the weekend and I'm pretty happy with what I managed to achieve. I hope you like it too!
 
-It is by no means production ready, nor complete, as that would take weeks as well as significantly increase the complexity of the project i.e. handling secrets, and I've got clothes to fold, but I've attempted to paint a complete picture with what's here.
+It is by no means production ready, nor complete, as that would take weeks given the required functionality, as well as significantly increase the complexity of the project i.e. handling secrets, but I've attempted to paint a complete picture with what's here.
 
 ## Specs
 
