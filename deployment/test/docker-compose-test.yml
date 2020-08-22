@@ -15,6 +15,9 @@ services:
       - refactor-me-postgres-test
     networks:
       - refactor-me-network-test
+    volumes:
+      - ../../tests:/app/tests
+      - ../../src:/app/src
 
   refactor-me-postgres-test:
     image: postgres:alpine

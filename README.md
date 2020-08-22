@@ -15,7 +15,7 @@ Database: PostgreSQL
 
 ### Application
 
-The application has been setup to run locally within docker. This is so you don't have to handle the database yourself.
+The application has been setup to run locally within docker. This is so you don't have to handle the database yourself. Don't worry, it's been designed to hand hot-reloading as well.
 
 - `environment/.env.example` to `environment/.env`
 - `npm install`
@@ -67,8 +67,8 @@ I also setup integration testing. It's been setup exclusively in docker for reas
 - Get Docker tests to output some colours.
 - Make it either `dev` or `development`, not both.
 - Fix up the README documentation and clean up a heap of stuff.
-- Maybe use Yarn?
-- Fix some of the redundancy, especially with the seeding.
+- Maybe use Yarn.
+- Fix some of the legacy redundancy, especially in regards to the seeding during testing.
 
 ## Discovered Errors
 
