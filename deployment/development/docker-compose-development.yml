@@ -7,8 +7,6 @@ services:
       dockerfile: ./deployment/development/Dockerfile.development
     ports:
       - 4000:4000
-    volumes:
-      - ../../logs:/app/logs
     env_file:
       - ../../environment/.env
     depends_on:

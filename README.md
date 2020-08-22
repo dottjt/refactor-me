@@ -2,7 +2,7 @@
 
 Hello! My name is Julius and this is my refactor! I knocked it up over the weekend and I'm pretty happy with what I managed to achieve. I hope you like it too!
 
-It is by no means production ready, nor complete, as that would take weeks as well as significantly increase the complexity of the project i.e. handling secrets, but I've attempted to paint a complete picture with what's here.
+It is by no means production ready, nor complete, as that would take weeks as well as significantly increase the complexity of the project i.e. handling secrets, and I've got clothes to fold, but I've attempted to paint a complete picture with what's here.
 
 ## Specs
 
@@ -43,13 +43,15 @@ The integration testing also uses docker because they heavily interface with the
 
 - `npm run start:docker:test`
 
+If the integration tests don't work, it's most likely because the development server is still running. You may need to go into `docker ps` and remove those instances.
+
 ## Decisions
 
 - Decided to rewrite everything from the ground-up (in node.js) since that's what I'm most experienced with. Also changed the datastore from SQLite to PostgreSQL so the application can be more extensible in future.
 - Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. It produces cleaner code, in my opinion.
 - My guiding principle whilst building this was to make the code as readable and as searchable as possible. Basically, making everything as explicit as possible. i.e. `export` instead of `default export`.
 - Decided to make the API more permissible, meaning to return empty objects, rather than errors if things didn't exist.
-- Please disregard the commit messages, they are neither meaningful, nor considerate.
+- Please disregard the commit messages, they are neither meaningful, nor meaningful.
 
 ## Improvements
 
