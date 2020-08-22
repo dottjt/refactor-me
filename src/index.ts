@@ -2,7 +2,7 @@ import path from 'path';
 
 // ENV
 import { config } from 'dotenv';
-config({ path: path.resolve(__dirname, '..', '.env') });
+config({ path: path.resolve(__dirname, '..', 'environment', '.env') });
 
 // Dependencies
 import Koa from 'koa';

@@ -13,9 +13,11 @@ Database: PostgreSQL
 
 ## How To Run
 
+### Application
+
 You can either run this locally or within docker. I recommend Docker since it setups up the Postgres database for you:
 
-- `.env.example` to `.env`
+- `environment/.env.example` to `environment/.env`
 - `npm install`
 - `npm run start:docker:dev`
 
@@ -30,6 +32,12 @@ Alternatively if you'd like to run it locally:
 - `npm run start:dev`
 
 The application is also pre-populated with seed data for testing purposes. Just head to `./database/seeds/development_seed_data.ts` if you'd like to see the pre-defined values.
+
+### Testing
+
+Testing has been setup exclusively in docker for reasons of idempotency, in part because it relies on a database. It can work on local, but it has neither been tested nor setup for that use-case.
+
+- `npm run start:docker:test`
 
 ## Decisions
 
@@ -51,8 +59,8 @@ The application is also pre-populated with seed data for testing purposes. Just 
 ## If I Had More Time
 
 - Setup SSL.
+- Setup production scripts/Docker configurations.
 - Setup some sort of external error alerting i.e. Sentry.
-- Setup Scripts/Docker configurations for a production build.
 - Setup some sort of CI/CD i.e. Buildkite.
 - Setup some sort of contract testing (technically it would just be the verifier).
 - Create etensive fixture files of all the different available products.

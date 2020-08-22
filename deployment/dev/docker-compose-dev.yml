@@ -3,14 +3,16 @@ services:
   refactor-me:
     container_name: refactor-me
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ../../
+      dockerfile: ./Dockerfile.dev
     ports:
       - 4000:4000
     volumes:
-      - ./logs:/app/logs
+      - ../../logs:/app/logs
     env_file:
-      - .env
+      - ../../environment/.env
+    depends_on:
+      - refactor-me-postgres
     networks:
       - refactor-me-network
 
@@ -20,14 +22,10 @@ services:
     ports:
       - 5432:5432
     restart: always
-    volumes:
-      - ./volumes/postgres:/var/lib/postgresql/data
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+    environment:
+      - POSTGRES_HOST=refactor-me-postgres
     env_file:
-      - ./.env
+      - ../../.env
     networks:
       - refactor-me-network
 

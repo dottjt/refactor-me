@@ -2,4 +2,4 @@ volumes
 logs
 
 node_modules
-.env
+environment/.env
