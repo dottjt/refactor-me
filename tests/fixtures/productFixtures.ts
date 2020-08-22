@@ -1,3 +1,6 @@
+export const invalidGUID = 'invalidguidstring-738d-489b-bc2b-a3b0d99bb517';
+export const invalidName = 'NA';
+export const nonExistentGUIDId = '9659a37b-738d-489b-bc2b-a3b0d99bb517';
 
 const productOneId = '8659a37b-738d-489b-bc2b-a3b0d99bb517';
 export const productOne = {

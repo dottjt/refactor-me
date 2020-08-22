@@ -1,6 +1,6 @@
 import { Context, Next } from 'koa';
 import { UNPROCESSABLE_ENTITY } from 'http-status';
-import { productIdSchema, productOptionIdAndProductIdSchema } from '../util/productValidationUtil';
+import { productIdSchema, productOptionIdAndProductIdSchema } from '../../../util/productValidationUtil';
 
 export const deleteSingleProductValidation = async (ctx: Context, next: Next): Promise<void> => {
   try {

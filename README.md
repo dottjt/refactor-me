@@ -35,7 +35,7 @@ The application is also pre-populated with seed data for testing purposes. Just 
 
 ### Testing
 
-Testing has been setup exclusively in docker for reasons of idempotency, in part because they're integration tests which rely on the database. I do not believe it work in local because of how the environment variables have been setup, but then again, in theory it should? Maybe? I don't know.
+I decided to setup integration testing. It's been setup exclusively in docker for reasons of idempotency, in part because they're integration tests which rely on the database. It might work in local, but I haven't really tested it.
 
 - `npm run start:docker:test`
 
@@ -44,6 +44,7 @@ Testing has been setup exclusively in docker for reasons of idempotency, in part
 - Decided to rewrite everything from the ground-up in node.js, since that's what I primarily work with. Also changed the datastore from SQLite to PostgreSQL.
 - Decided not to use Object-oriented patterns (classes, services etc.) in favour for more functional patterns. It produces cleaner code, in my opinion.
 - My guiding principle whilst building this was to make the code as readable and as searchable as possible. This included making everything as explicit as possible.
+- Decided to make the API more permissible, meaning to return empty objects, rather than errors if things didn't exist.
 - I didn't take the commit messages, nor their contents seriously. Like, at all.
 
 ## Improvements
@@ -54,7 +55,6 @@ Testing has been setup exclusively in docker for reasons of idempotency, in part
 - Added extensive API validation. Very happy with how this turned out.
 - Added linting.
 - Added githooks.
-- I also blessed the codebase with holy water.
 
 ## If I Had More Time
 
@@ -69,11 +69,13 @@ Testing has been setup exclusively in docker for reasons of idempotency, in part
 - Rewrite the way secrets/environments are being handled, it's a bit of a mess. Or use some sort of external service like Vault.
 - Create a bash scripts folder to handle the different flows, rather than jamming everything into the package.json.
 - Add some form of rate limiting with a Redis cache.
+- Have the application generate log files.
 - Add additional JSDoc annotations.
 - Get Docker tests to output some colours.
 - Make it either `dev` or `development`, not both.
 - Fix up the README documentation and clean up a heap of stuff.
 - Maybe use Yarn?
+- Fix some of the redundancy, especially with the seeding.
 
 ## Discovered Errors
 

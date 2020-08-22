@@ -13,18 +13,12 @@ import logger from 'koa-logger';
 // Routes
 import { productRouter } from './routes/productRoutes/productRouter';
 
-// Main
-const main = async () => {
-  const app = new Koa();
-
-  app
+export const app =
+  new Koa()
     .use(helmet())
     .use(bodyParser())
     .use(logger())
     .use(productRouter().routes())
     .listen(4000)
 
-  console.log('app listening on port 4000');
-}
-
-main();
+console.log('app listening on port 4000');

@@ -1,5 +1,16 @@
+import { knex } from "../../../src/util/knex";
+import {
+  productOne,
+  productOneOptionOne,
+  productOneOptionTwo
+} from "../../fixtures/productFixtures";
 
 describe('postProductRoutes', () => {
+  beforeEach(async () => {
+    await knex('productOptions').delete();
+    await knex('products').delete();
+  });
+
   describe('postNewSingleProductRoute - /products/', () => {
     it('should insert a new product into the database', () => {
       expect('cake').toBe('cake');

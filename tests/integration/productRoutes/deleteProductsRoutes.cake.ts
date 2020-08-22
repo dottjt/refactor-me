@@ -1,29 +1,27 @@
 import { knex } from '../../../src/util/knex';
+import {
+  productOne,
+  productTwo,
+  productOneOptionOne,
+  productOneOptionTwo,
+  productTwoOptionOne,
+} from '../../fixtures/productFixtures';
 
 describe('deleteProductsRoutes', () => {
-  beforeAll(async () => {
-    // await knex('products').insert(productOne);
+  beforeEach(async () => {
+    await knex('productOptions').delete();
+    await knex('products').delete();
 
-    const products = await knex('products').select('*');
-    console.log(products)
+    await knex('products').insert(productOne);
+    await knex('products').insert(productTwo);
+    await knex('productOptions').insert(productOneOptionOne);
+    await knex('productOptions').insert(productOneOptionTwo);
+    await knex('productOptions').insert(productTwoOptionOne);
   });
-
-  // it('Lists all users', (done) => {
-  //   request(app)
-  //     .get('/users')
-  //     .set('Accept', 'application/json')
-  //     .expect('Content-Type', /json/)
-  //     .expect(200)
-  //     .then((response) => {
-  //         expect(response.body).to.be.a('array');
-  //         done();
-  //     }).catch((e) => {
-  //         console.log(e);
-  //     });
-  // });
 
   describe('deleteSingleProductRoute - /products/:id', () => {
     it('should delete a single product and all relative product options', () => {
+
       expect('cake').toBe('cake');
     });
 
