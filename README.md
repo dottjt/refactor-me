@@ -31,8 +31,11 @@ Here are some random GET endpoints you can try in your browser, although the int
 - `http://localhost:4000/products?name=Amazing Product Name One`
 - `http://localhost:4000/products?name=%22Amazing%20Product%20Name%20One%22`
 - `http://localhost:4000/products/8659a37b-738d-489b-bc2b-a3b0d99bb517`
+- `http://localhost:4000/products/invalid-guid`
 - `http://localhost:4000/products/8659a37b-738d-489b-bc2b-a3b0d99bb517/options`
 - `http://localhost:4000/products/8659a37b-738d-489b-bc2b-a3b0d99bb517/options/1ed606ed-6bfc-4198-92a5-a9577028da5a`
+- `http://localhost:4000/products/invalid-guid/options/1ed606ed-6bfc-4198-92a5-a9577028da5a`
+- `http://localhost:4000/products/invalid-guid/options/invalid-guid`
 
 ### Testing
 
