@@ -1,4 +1,4 @@
-# Refactor Me
+# Xero Coding Exercise
 
 Hello! My name is Julius and this is my refactor! I knocked it up over the weekend and I'm pretty happy with what I managed to achieve. I hope you like it too!
 
